@@ -13,12 +13,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible|adjustPan">
 
-<<<<<<< HEAD
-=======
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
->>>>>>> parent of e1e6342... Revert "15.07.08 메인화면 구현2"
+
+
         </activity>
         <activity
             android:name=".MainActivity"
