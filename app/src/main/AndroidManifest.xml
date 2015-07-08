@@ -13,15 +13,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible|adjustPan">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> d6db4485bd484a5ca0950b2a0791a3312f8c1295
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
->>>>>>> d6db4485bd484a5ca0950b2a0791a3312f8c1295
-
         </activity>
         <activity
             android:name=".MainActivity"
