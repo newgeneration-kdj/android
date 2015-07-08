@@ -695,7 +695,7 @@
                             android:hint="비밀번호 만들기"
                             android:textSize="15sp"
                             android:gravity="center"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionDone"
                             android:inputType="text" />
 
                         <LinearLayout

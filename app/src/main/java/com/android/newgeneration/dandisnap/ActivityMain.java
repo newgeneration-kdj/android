@@ -1,5 +1,6 @@
 package com.android.newgeneration.dandisnap;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -107,6 +108,11 @@ public class ActivityMain extends FragmentActivity implements OnEditorActionList
                 nickname_layout.setVisibility(View.GONE);
                 password_layout.setVisibility(View.VISIBLE);
                 break;
+            case R.id.password1_edit:
+                Intent intent = new Intent(getApplicationContext(),ActivityMain2.class);
+                startActivity(intent);
+                finish();
+                
 
         }
         return false;
