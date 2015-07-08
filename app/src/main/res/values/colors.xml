@@ -4,7 +4,6 @@
     <item name="default_grey" type="color">#ececec</item>
     <item name="default_blue" type="color">#004b87</item>
     <item name="dark_grey" type="color">#3A3A3A</item>
-    <item name="light_blue" type="color">#3399FF</item>
+    <item name="light_blue" type="color">#0054FF</item>
     <item name="transparent" type="color">#00000000</item>
-    <item name="light_grey" type="color">#D5D5D5</item>
 </resources>
