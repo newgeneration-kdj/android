@@ -1,0 +1,9 @@
+diff a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml	(rejected hunks)
+@@ -17,6 +17,7 @@
+ 
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
++
+         </activity>
+         <activity
+             android:name=".MainActivity"
