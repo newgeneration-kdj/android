@@ -13,6 +13,7 @@ import butterknife.OnClick;
 public class ActivityMain extends Activity {
 
     FragmentHome FragmentHome;
+    FragmentActivity FragmentActivity;
 
     @InjectView(R.id.fragment_home_btn)
     Button fragment_home_btn;
@@ -35,6 +36,7 @@ public class ActivityMain extends Activity {
 
     public void setInit() {
         FragmentHome = new FragmentHome();
+        FragmentActivity = new FragmentActivity();
         getFragmentManager().beginTransaction().add(R.id.fragment_layout, FragmentHome).commit();
     }
 
@@ -51,7 +53,7 @@ public class ActivityMain extends Activity {
 
                 break;
             case R.id.fragment_activity_btn:
-
+                getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentActivity).commit();
                 break;
             case R.id.fragment_profile_btn:
 
