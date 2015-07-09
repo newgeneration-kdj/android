@@ -12,30 +12,25 @@ import android.widget.TextView;
 public class FragmentActivity extends Fragment implements View.OnClickListener {
 
 
-
     TextView you_txt;
     TextView following_txt;
-
     FrameLayout layout1;
-
     FrameLayout layout2;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_activity, container, false);
 
-        following_txt  = (TextView) v.findViewById(R.id.fragment_following_txt);
+        following_txt = (TextView) v.findViewById(R.id.fragment_following_txt);
         following_txt.setOnClickListener(this);
-       you_txt  = (TextView) v.findViewById(R.id.fragment_you_txt);
+        you_txt = (TextView) v.findViewById(R.id.fragment_you_txt);
         you_txt.setOnClickListener(this);
         layout1 = (FrameLayout) v.findViewById(R.id.layout1);
         layout2 = (FrameLayout) v.findViewById(R.id.layout2);
+        following_txt.performClick();
         return v;
     }
-
-
 
 
     @Override

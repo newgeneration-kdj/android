@@ -1,0 +1,170 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/default_grey"
+    tools:context=".ActivityMain">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:background="@color/default_blue">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <Button
+                    android:background="@color/default_blue"
+                    android:id="@+id/fragment_search_backsign_btn"
+                    android:visibility="gone"
+                    android:layout_weight="15"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="뒤로"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/fragment_search_edt"
+                    android:layout_weight="85"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="15sp"
+                    android:gravity="center_vertical"
+                    android:hint="검색"
+                    android:textColorHint="@color/light_blue"/>
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="90"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <TextView
+                        android:id="@+id/find_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사람 찾아보기"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_below="@+id/find_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="새로 팔로우할 사람을 찾아보세요"
+                        android:textColor="@color/light_grey"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="13sp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_weight="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="90"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="1"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="2"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="3"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"/>
+
+                <RelativeLayout
+                    android:layout_weight="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+

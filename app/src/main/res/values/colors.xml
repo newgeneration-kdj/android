@@ -6,5 +6,5 @@
     <item name="dark_grey" type="color">#353535</item>
     <item name="light_blue" type="color">#3399FF</item>
     <item name="transparent" type="color">#00000000</item>
-    <item name="light_grey" type="color">#D5D5D5</item>
+    <item name="light_grey" type="color">#BDBDBD</item>
 </resources>

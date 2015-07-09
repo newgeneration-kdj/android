@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/default_grey"
-    tools:context=".ActivityMain2">
+    tools:context=".ActivityMain">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:gravity="center_vertical"
                 android:text="활동"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
         </RelativeLayout>
 
@@ -48,7 +48,7 @@
                     android:gravity="center"
                     android:text="팔로잉"
                     android:textColor="@color/dark_grey"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/fragment_you_txt"
@@ -59,7 +59,7 @@
                     android:gravity="center"
                     android:text="회원님"
                     android:textColor="@color/dark_grey"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
 
             </LinearLayout>
@@ -91,7 +91,7 @@
                     android:text="회원님이 팔로우하는 사람들의 활동"
                     android:textColor="@color/dark_grey"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_marginTop="20dp"
@@ -102,8 +102,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
                     android:textColor="@color/light_grey"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
 
             </RelativeLayout>
 

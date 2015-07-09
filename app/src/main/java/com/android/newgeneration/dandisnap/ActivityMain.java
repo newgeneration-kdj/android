@@ -14,6 +14,8 @@ public class ActivityMain extends Activity {
 
     FragmentHome FragmentHome;
     FragmentActivity FragmentActivity;
+    FragmentProfile FragmentProfile;
+    FragmentSearch FragmentSearch;
 
     @InjectView(R.id.fragment_home_btn)
     Button fragment_home_btn;
@@ -37,6 +39,8 @@ public class ActivityMain extends Activity {
     public void setInit() {
         FragmentHome = new FragmentHome();
         FragmentActivity = new FragmentActivity();
+        FragmentProfile = new FragmentProfile();
+        FragmentSearch = new FragmentSearch();
         getFragmentManager().beginTransaction().add(R.id.fragment_layout, FragmentHome).commit();
     }
 
@@ -47,7 +51,7 @@ public class ActivityMain extends Activity {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentHome).commit();
                 break;
             case R.id.fragment_search_btn:
-
+                getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentSearch).commit();
                 break;
             case R.id.fragment_camera_btn:
 
@@ -56,7 +60,7 @@ public class ActivityMain extends Activity {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentActivity).commit();
                 break;
             case R.id.fragment_profile_btn:
-
+                getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentProfile).commit();
                 break;
         }
     }
