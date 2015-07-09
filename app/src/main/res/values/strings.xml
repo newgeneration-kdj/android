@@ -4,5 +4,5 @@
     <string name="hello_world">안드로이드!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_activity_main2">ActivityMain2</string>
-    <string name="title_option"></string>
+    <string name="title_option">옵션</string>
 </resources>

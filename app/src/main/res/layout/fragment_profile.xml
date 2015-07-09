@@ -292,7 +292,7 @@
                         android:layout_marginTop="15dp"
                         android:paddingLeft="10sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:textSize="20sp"
                         android:gravity="center_vertical"
                         android:text="팔로우"
@@ -306,7 +306,7 @@
                     <TextView
                         android:paddingLeft="10sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:textSize="15sp"
                         android:gravity="center_vertical"
                         android:text="Facebook 친구 찾기"
@@ -320,7 +320,7 @@
                     <TextView
                         android:paddingLeft="10sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:textSize="15sp"
                         android:gravity="center_vertical"
                         android:text="연락처 찾기"
@@ -334,7 +334,7 @@
                     <TextView
                         android:paddingLeft="10sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:textSize="15sp"
                         android:gravity="center_vertical"
                         android:text="친구 초대하기"
@@ -349,7 +349,7 @@
                         android:layout_marginTop="15dp"
                         android:paddingLeft="10sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:textSize="20sp"
                         android:gravity="center_vertical"
                         android:text="계정"
@@ -361,13 +361,112 @@
                         android:background="@color/light_grey"/>
 
                     <TextView
+                        android:paddingLeft="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:text="프로필 편집"
+                        android:textColor="@color/dark_grey"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_grey"/>
+
+                    <TextView
+                        android:paddingLeft="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:text="비밀번호 변경"
+                        android:textColor="@color/dark_grey"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_grey"/>
+
+                    <TextView
+                        android:paddingLeft="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:text="회원님이 좋아한 게시물"
+                        android:textColor="@color/dark_grey"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_grey"/>
+
+                    <TextView
                         android:id="@+id/fragment_option_logout_txt"
                         android:paddingLeft="10sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:textSize="15sp"
                         android:gravity="center_vertical"
                         android:text="로그아웃"
+                        android:textColor="@color/dark_grey"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_grey"/>
+
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:paddingLeft="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textSize="20sp"
+                        android:gravity="center_vertical"
+                        android:text="설정"
+                        android:textColor="@color/dark_grey"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/light_grey"/>
+
+                    <TextView
+                        android:paddingLeft="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:text="연결된 계정"
+                        android:textColor="@color/dark_grey"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_grey"/>
+
+                    <TextView
+                        android:paddingLeft="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:text="푸시 알림"
+                        android:textColor="@color/dark_grey"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_grey"/>
+
+                    <TextView
+                        android:paddingLeft="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:text="카메라"
                         android:textColor="@color/dark_grey"/>
 
                     <ImageView

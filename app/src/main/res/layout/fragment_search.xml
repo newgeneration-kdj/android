@@ -24,7 +24,7 @@
 
                 <Button
                     android:background="@color/default_blue"
-                    android:id="@+id/fragment_search_backsign_btn"
+                    android:id="@+id/fragment_backsign_btn"
                     android:visibility="gone"
                     android:layout_weight="15"
                     android:layout_width="0dp"
