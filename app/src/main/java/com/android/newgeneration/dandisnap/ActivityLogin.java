@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -53,18 +52,26 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
     EditText password1_edit;
     @InjectView(R.id.backnick_btn)
     Button backnick_btn;
+    @InjectView(R.id.error_txt)
+    TextView error_txt;
     UserData userData = new UserData(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
-
         ButterKnife.inject(this);
-
         setOnEditorActionListener();
+        // checkOnlogin();
+    }
 
+
+    public void checkOnlogin() {
+        if (userData.getOnlogin() == 1) {
+            Intent i = new Intent(getApplicationContext(), ActivityMain.class);
+            startActivity(i);
+            finish();
+        }
     }
 
     public void setOnEditorActionListener() {
@@ -92,6 +99,7 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                 signup_btn.setTextColor(Color.GRAY);
                 layout1.setVisibility(View.GONE);
                 layout2.setVisibility(View.VISIBLE);
+                error_txt.setText("");
                 break;
             case R.id.backsign_btn:
                 main_layout.setVisibility(View.VISIBLE);
@@ -119,23 +127,29 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         switch (v.getId()) {
             case R.id.username_edit:
-                if (userData.getOnlogin() == 1) {
-                    username_edit.setText(userData.getUser_nickname());
-                }
                 break;
             case R.id.password_edit:
-                if (password_edit.getText().toString().equals(userData.getUser_password())) {
+                if (username_edit.getText().toString().isEmpty()) {
+                    error_txt.setText("사용자 이름을 입력하세요.");
+                } else if (password_edit.getText().toString().isEmpty()) {
+                    error_txt.setText("비밀번호를 입력하세요.");
+                } else if (password_edit.getText().toString().equals(userData.getUser_password()) && username_edit.getText().toString().equals(userData.getUser_nickname())) {
+                    error_txt.setText("");
                     Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                     startActivity(intent);
                     finish();
-                } else
-                    Toast.makeText(getApplicationContext(), "패드워드가 틀렸습니다.", Toast.LENGTH_SHORT).show();
+                } else{
+                    error_txt.setText("잘못된 사용자 이름 또는 비밀번호입니다.");
+                }
                 //완료버튼 누르면 로그인이 되고, 메인화면으로 넘어가는 이벤트
                 break;
             case R.id.email_edit:
-                main_layout.setVisibility(View.GONE);
-                name_layout.setVisibility(View.VISIBLE);
-                userData.setUser_email(email_edit.getText().toString());
+                if (!email_edit.getText().toString().isEmpty()) {
+                    main_layout.setVisibility(View.GONE);
+                    name_layout.setVisibility(View.VISIBLE);
+                    userData.setUser_email(email_edit.getText().toString());
+                }
+
                 break;
             case R.id.name_edit:
                 name_layout.setVisibility(View.GONE);
@@ -153,13 +167,6 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                 Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                 startActivity(intent);
                 finish();
-               /* Toast.makeText(getApplicationContext(), userData.getUser_email(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), userData.getUser_name(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), userData.getUser_nickname(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), userData.getUser_password(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), String.valueOf(userData.getOnlogin()), Toast.LENGTH_SHORT).show();*/
-
-
                 break;
 
         }
