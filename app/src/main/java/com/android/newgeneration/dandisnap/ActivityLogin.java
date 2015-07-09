@@ -54,20 +54,21 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
     Button backnick_btn;
     @InjectView(R.id.error_txt)
     TextView error_txt;
-    UserData userData = new UserData(this);
+    UserData userData = UserData.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
+        userData.setCompareOnlogin(1,this);
         setOnEditorActionListener();
-        //checkOnlogin();
+        checkOnlogin();
     }
 
 
     public void checkOnlogin() {
-        if (userData.getOnlogin() == 1) {
+        if (userData.getOnlogin() == userData.getCompareOnlogin()) {
             Intent i = new Intent(getApplicationContext(), ActivityMain.class);
             startActivity(i);
             finish();
@@ -81,7 +82,7 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
         name_edit.setOnEditorActionListener(this);
         nickname_edit.setOnEditorActionListener(this);
         password1_edit.setOnEditorActionListener(this);
-        if (userData.getOnlogin() == 1)
+       if (userData.getOnlogin() ==userData.getCompareOnlogin())
             username_edit.setText(userData.getUser_nickname());
     }
 
@@ -135,6 +136,7 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                     error_txt.setText("비밀번호를 입력하세요.");
                 } else if (password_edit.getText().toString().equals(userData.getUser_password()) && username_edit.getText().toString().equals(userData.getUser_nickname())) {
                     error_txt.setText("");
+                    userData.setOnlogin(1,this);
                     Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                     startActivity(intent);
                     finish();
@@ -147,23 +149,23 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                 if (!email_edit.getText().toString().isEmpty()) {
                     main_layout.setVisibility(View.GONE);
                     name_layout.setVisibility(View.VISIBLE);
-                    userData.setUser_email(email_edit.getText().toString());
+                    userData.setUser_email(email_edit.getText().toString(),this);
                 }
 
                 break;
             case R.id.name_edit:
                 name_layout.setVisibility(View.GONE);
                 nickname_layout.setVisibility(View.VISIBLE);
-                userData.setUser_name(name_edit.getText().toString());
+                userData.setUser_name(name_edit.getText().toString(),this);
                 break;
             case R.id.nickname_edit:
                 nickname_layout.setVisibility(View.GONE);
                 password_layout.setVisibility(View.VISIBLE);
-                userData.setUser_nickname(nickname_edit.getText().toString());
+                userData.setUser_nickname(nickname_edit.getText().toString(),this);
                 break;
             case R.id.password1_edit:
-                userData.setUser_password(password1_edit.getText().toString());
-                userData.setOnlogin(1);
+                userData.setUser_password(password1_edit.getText().toString(),this);
+                userData.setOnlogin(1,this);
                 Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                 startActivity(intent);
                 finish();
