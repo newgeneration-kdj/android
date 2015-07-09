@@ -62,7 +62,7 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         setOnEditorActionListener();
-        // checkOnlogin();
+        //checkOnlogin();
     }
 
 
