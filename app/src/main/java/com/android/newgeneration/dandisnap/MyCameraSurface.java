@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by �ֽ�ȯ on 2015-07-14.
+ * Created by 주승환 on 2015-07-14.
  */
 class MyCameraSurface extends SurfaceView implements SurfaceHolder.Callback {
 

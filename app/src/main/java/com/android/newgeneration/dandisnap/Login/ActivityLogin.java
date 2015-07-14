@@ -1,4 +1,4 @@
-package com.android.newgeneration.dandisnap;
+package com.android.newgeneration.dandisnap.Login;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+
+import com.android.newgeneration.dandisnap.ActivityMain;
+import com.android.newgeneration.dandisnap.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -54,6 +57,8 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
     Button backnick_btn;
     @InjectView(R.id.error_txt)
     TextView error_txt;
+    @InjectView(R.id.findpsw_btn)
+    Button findpsw_btn;
     UserData userData = UserData.getInstance();
 
     @Override
@@ -61,9 +66,10 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
-        userData.setCompareOnlogin(1,this);
+        userData.setCompareOnlogin(1, this);
         setOnEditorActionListener();
         checkOnlogin();
+
     }
 
 
@@ -82,11 +88,11 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
         name_edit.setOnEditorActionListener(this);
         nickname_edit.setOnEditorActionListener(this);
         password1_edit.setOnEditorActionListener(this);
-       if (userData.getOnlogin() ==userData.getCompareOnlogin())
+        if (userData.getOnlogin() == userData.getCompareOnlogin())
             username_edit.setText(userData.getUser_nickname());
     }
 
-    @OnClick({R.id.signup_btn, R.id.login_btn, R.id.backsign_btn, R.id.backname_btn, R.id.backnick_btn})
+    @OnClick({R.id.signup_btn, R.id.login_btn, R.id.backsign_btn, R.id.backname_btn, R.id.backnick_btn, R.id.findpsw_btn})
     void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.signup_btn:
@@ -114,6 +120,10 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                 nickname_layout.setVisibility(View.VISIBLE);
                 password_layout.setVisibility(View.GONE);
                 break;
+            case R.id.findpsw_btn:
+                Intent intent = new Intent(getApplicationContext(), ActivityFindpsw.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -136,11 +146,11 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                     error_txt.setText("비밀번호를 입력하세요.");
                 } else if (password_edit.getText().toString().equals(userData.getUser_password()) && username_edit.getText().toString().equals(userData.getUser_nickname())) {
                     error_txt.setText("");
-                    userData.setOnlogin(1,this);
+                    userData.setOnlogin(1, this);
                     Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                     startActivity(intent);
                     finish();
-                } else{
+                } else {
                     error_txt.setText("잘못된 사용자 이름 또는 비밀번호입니다.");
                 }
                 //완료버튼 누르면 로그인이 되고, 메인화면으로 넘어가는 이벤트
@@ -149,23 +159,22 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                 if (!email_edit.getText().toString().isEmpty()) {
                     main_layout.setVisibility(View.GONE);
                     name_layout.setVisibility(View.VISIBLE);
-                    userData.setUser_email(email_edit.getText().toString(),this);
+                    userData.setUser_email(email_edit.getText().toString(), this);
                 }
-
                 break;
             case R.id.name_edit:
                 name_layout.setVisibility(View.GONE);
                 nickname_layout.setVisibility(View.VISIBLE);
-                userData.setUser_name(name_edit.getText().toString(),this);
+                userData.setUser_name(name_edit.getText().toString(), this);
                 break;
             case R.id.nickname_edit:
                 nickname_layout.setVisibility(View.GONE);
                 password_layout.setVisibility(View.VISIBLE);
-                userData.setUser_nickname(nickname_edit.getText().toString(),this);
+                userData.setUser_nickname(nickname_edit.getText().toString(), this);
                 break;
             case R.id.password1_edit:
-                userData.setUser_password(password1_edit.getText().toString(),this);
-                userData.setOnlogin(1,this);
+                userData.setUser_password(password1_edit.getText().toString(), this);
+                userData.setOnlogin(1, this);
                 Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                 startActivity(intent);
                 finish();

@@ -8,4 +8,5 @@
     <string name="title_activity_activity_camera">ActivityCamera</string>
     <string name="save_completed">사진이 저장되었습니다.</string>
     <string name="no_folder">사진을 저장할 폴더가 없습니다.</string>
+    <string name="title_activity_activity_findpsw">ActivityFindpsw</string>
 </resources>

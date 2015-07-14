@@ -257,13 +257,16 @@
                                         android:textColorHint="#33000000"
                                         android:textSize="15sp" />
 
-                                    <TextView
+                                    <Button
+                                        android:id="@+id/findpsw_btn"
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:gravity="center|right"
                                         android:text="비밀번호를 잊으셨나요?"
-                                        android:textColor="@color/default_blue" />
+                                        android:background="#00000000"
+                                        android:textColor="@color/default_blue"
+                                        android:textSize="15sp"/>
                                 </LinearLayout>
 
 
