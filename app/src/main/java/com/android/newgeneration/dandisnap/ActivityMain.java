@@ -2,6 +2,7 @@
 package com.android.newgeneration.dandisnap;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -13,7 +14,7 @@ import butterknife.OnClick;
 public class ActivityMain extends Activity {
 
     FragmentHome FragmentHome;
-    FragmentActivity FragmentActivity;
+    FragmentActivities FragmentActivity;
     FragmentProfile FragmentProfile;
     FragmentSearch FragmentSearch;
 
@@ -38,7 +39,7 @@ public class ActivityMain extends Activity {
 
     public void setInit() {
         FragmentHome = new FragmentHome();
-        FragmentActivity = new FragmentActivity();
+        FragmentActivity = new FragmentActivities();
         FragmentProfile = new FragmentProfile();
         FragmentSearch = new FragmentSearch();
         getFragmentManager().beginTransaction().add(R.id.fragment_layout, FragmentHome).commit();
@@ -54,7 +55,8 @@ public class ActivityMain extends Activity {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentSearch).commit();
                 break;
             case R.id.fragment_camera_btn:
-
+                Intent intent = new Intent(this, ActivityCamera.class);
+                startActivity(intent);
                 break;
             case R.id.fragment_activity_btn:
                 getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentActivity).commit();

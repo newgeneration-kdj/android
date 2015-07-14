@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class FragmentActivity extends Fragment implements View.OnClickListener {
+public class FragmentActivities extends Fragment implements View.OnClickListener {
 
 
     TextView you_txt;
@@ -20,7 +20,7 @@ public class FragmentActivity extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_activity, container, false);
+        View v = inflater.inflate(R.layout.fragment_activities, container, false);
 
         following_txt = (TextView) v.findViewById(R.id.fragment_following_txt);
         following_txt.setOnClickListener(this);
