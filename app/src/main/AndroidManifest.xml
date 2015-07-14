@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.newgeneration.dandisnap" >
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -31,6 +32,11 @@
         <activity
             android:name=".ActivityCamera"
             android:label="@string/title_activity_activity_camera" >
+        </activity>
+        <activity
+            android:name=".ActivityFindpsw"
+            android:label="@string/title_activity_activity_findpsw"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
     </application>
 

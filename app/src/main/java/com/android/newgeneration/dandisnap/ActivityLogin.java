@@ -54,6 +54,7 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
     Button backnick_btn;
     @InjectView(R.id.error_txt)
     TextView error_txt;
+    @InjectView(R.id.findpsw_btn) Button findpsw_btn;
     UserData userData = UserData.getInstance();
 
     @Override
@@ -86,7 +87,7 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
             username_edit.setText(userData.getUser_nickname());
     }
 
-    @OnClick({R.id.signup_btn, R.id.login_btn, R.id.backsign_btn, R.id.backname_btn, R.id.backnick_btn})
+    @OnClick({R.id.signup_btn, R.id.login_btn, R.id.backsign_btn, R.id.backname_btn, R.id.backnick_btn, R.id.findpsw_btn})
     void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.signup_btn:
@@ -113,6 +114,11 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
             case R.id.backnick_btn:
                 nickname_layout.setVisibility(View.VISIBLE);
                 password_layout.setVisibility(View.GONE);
+                break;
+            case R.id.findpsw_btn:
+                Intent intent = new Intent(getApplicationContext(),ActivityFindpsw.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 break;
         }
     }
