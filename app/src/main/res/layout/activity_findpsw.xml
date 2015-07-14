@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.newgeneration.dandisnap.ActivityFindpsw">
+    tools:context="com.android.newgeneration.dandisnap.Login.ActivityFindpsw">
 
     <LinearLayout
         android:layout_width="match_parent"

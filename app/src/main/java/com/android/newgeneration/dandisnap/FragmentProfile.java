@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.android.newgeneration.dandisnap.Login.ActivityLogin;
+import com.android.newgeneration.dandisnap.Login.UserData;
+
 public class FragmentProfile extends Fragment implements View.OnClickListener {
 
     Button fragment_backsign_btn, fragment_option_btn;

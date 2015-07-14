@@ -1,4 +1,4 @@
-package com.android.newgeneration.dandisnap;
+package com.android.newgeneration.dandisnap.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import com.android.newgeneration.dandisnap.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -48,9 +50,8 @@ Button backlogin_btn;
         switch(btn.getId()){
             case R.id.backlogin_btn:
                 Intent intent = new Intent(getApplicationContext(),ActivityLogin.class);
-               // intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish();
                 break;
         }
     }
