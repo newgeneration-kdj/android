@@ -15,8 +15,8 @@ import butterknife.OnClick;
 
 
 public class ActivityFindpsw extends ActionBarActivity {
-@InjectView(R.id.backlogin_btn)
-Button backlogin_btn;
+@InjectView(R.id.findpsw_btn_backlogin)
+Button mFindpswBtnBacklogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +45,10 @@ Button backlogin_btn;
 
         return super.onOptionsItemSelected(item);
     }
-    @OnClick({R.id.backlogin_btn})
+    @OnClick({R.id.findpsw_btn_backlogin})
     void onButtonClick(Button btn){
         switch(btn.getId()){
-            case R.id.backlogin_btn:
+            case R.id.findpsw_btn_backlogin:
                 Intent intent = new Intent(getApplicationContext(),ActivityLogin.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

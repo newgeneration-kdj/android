@@ -4,24 +4,28 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.android.newgeneration.dandisnap.R;
+
 /**
  * Created by 천보경 on 2015-07-09.
  */
-public class UserData{
-    private String user_email;
-    private String user_name;
-    private String user_nickname;
-    private String user_password;
-    private int onlogin;
-    private volatile static UserData uniqueInstance=null;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-    static Context context;
+public class UserData {
+    private static final String mFilename = "userdata";
+    private String mUseremail;
+    private String mUsername;
+    private String mUsernickname;
+    private String mUserpassword;
+    private int mOnlogin;
+    private volatile static UserData uniqueInstance = null;
+    SharedPreferences mSharedPreferences;
+    SharedPreferences.Editor mEditor;
+    static Context mContext;
 
 
-    private UserData(){    }
+    private UserData() {
+    }
 
-   public static UserData getInstance() {
+    public static UserData getInstance() {
         if (uniqueInstance == null) {
             // 이렇게 하면 처음에만 동기화 된다
             synchronized (UserData.class) {
@@ -32,88 +36,91 @@ public class UserData{
         }
         return uniqueInstance;
     }
-//Sharedpreference에서 ActivityLogin에서 값을 받아올 때 ActivityLogin의 정보가 필요하므로 Context 설정!!
+
+    //Sharedpreference에서 ActivityLogin에서 값을 받아올 때 ActivityLogin의 정보가 필요하므로 Context 설정!!
     public String getUser_email() {
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        return sharedPreferences.getString("user_email", "");
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        return mSharedPreferences.getString(String.valueOf(R.string.userdata_key_email), "");
 
     }
 
-    public void setUser_email(String user_email,Context context) {
-        this.user_email = user_email;
-        this.context = context;
-        sharedPreferences =context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("user_email", user_email);
-        editor.commit();
+    public void setUser_email(String mUseremail, Context mContext) {
+        this.mUseremail = mUseremail;
+        this.mContext = mContext;
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(String.valueOf(R.string.userdata_key_email), mUseremail);
+        mEditor.commit();
     }
 
     public String getUser_name() {
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        return sharedPreferences.getString("user_name", "");
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        return mSharedPreferences.getString(String.valueOf(R.string.userdata_key_name), "");
     }
 
-    public void setUser_name(String user_name,Context context) {
-        this.user_name = user_name;
-        this.context = context;
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("user_name", user_name);
-        editor.commit();
+    public void setUser_name(String mUsername, Context mContext) {
+        this.mUsername = mUsername;
+        this.mContext = mContext;
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(String.valueOf(R.string.userdata_key_name), mUsername);
+        mEditor.commit();
     }
 
     public String getUser_nickname() {
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        return sharedPreferences.getString("user_nickname", "");
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        return mSharedPreferences.getString(String.valueOf(R.string.userdata_key_nick), "");
     }
 
-    public void setUser_nickname(String user_nickname,Context context) {
-        this.user_nickname = user_nickname;
-        this.context = context;
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("user_nickname", user_nickname);
-        editor.commit();
+    public void setUser_nickname(String mUsernickname, Context mContext) {
+        this.mUsernickname = mUsernickname;
+        this.mContext = mContext;
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(String.valueOf(R.string.userdata_key_nick), mUsernickname);
+        mEditor.commit();
     }
 
     public String getUser_password() {
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        return sharedPreferences.getString("user_password", "");
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        return mSharedPreferences.getString(String.valueOf(R.string.userdata_key_psw), "");
     }
 
-    public void setUser_password(String user_password,Context context) {
-        this.user_password = user_password;
-        this.context = context;
-        sharedPreferences = context.getSharedPreferences("userdata",Activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("user_password", user_password);
-        editor.commit();
+    public void setUser_password(String mUserpassword, Context mContext) {
+        this.mUserpassword = mUserpassword;
+        this.mContext = mContext;
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(String.valueOf(R.string.userdata_key_psw), mUserpassword);
+        mEditor.commit();
     }
 
     public int getOnlogin() {
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        return sharedPreferences.getInt("onlogin", 0);
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        return mSharedPreferences.getInt(String.valueOf(R.string.userdata_key_onlogin), 0);
 
     }
 
-    public void setOnlogin(int onlogin, Context context) {
-        this.onlogin = onlogin;
-        this.context = context;
-        sharedPreferences = context.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putInt("onlogin", onlogin);
-        editor.commit();
+    public void setOnlogin(int mOnlogin, Context mContext) {
+        this.mOnlogin = mOnlogin;
+        this.mContext = mContext;
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putInt(String.valueOf(R.string.userdata_key_onlogin), mOnlogin);
+        mEditor.commit();
 
     }
-    public void setCompareOnlogin(int comp_Onlogin, Context context){
-        this.context = context;
-        sharedPreferences = context.getSharedPreferences("userdata",Activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putInt("com_Onlogin",1);
-        editor.commit();
+
+    public void setCompareOnlogin(int comp_Onlogin, Context mContext) {
+        this.mContext = mContext;
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putInt(String.valueOf(R.string.userdata_key_compare), 1);
+        mEditor.commit();
     }
-    public int getCompareOnlogin(){
-        sharedPreferences = context.getSharedPreferences("userdata",Activity.MODE_PRIVATE);
-        return sharedPreferences.getInt("com_Onlogin",0);
+
+    public int getCompareOnlogin() {
+        mSharedPreferences = mContext.getSharedPreferences(mFilename, Activity.MODE_PRIVATE);
+        return mSharedPreferences.getInt(String.valueOf(R.string.userdata_key_compare), 0);
     }
 }

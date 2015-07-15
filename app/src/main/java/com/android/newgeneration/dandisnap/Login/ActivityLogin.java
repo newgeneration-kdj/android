@@ -70,7 +70,6 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
         mUserData.setCompareOnlogin(1, this);
         setOnEditorActionListener();
         checkOnlogin();
-
     }
 
 
@@ -89,13 +88,75 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
         mLoginEditName.setOnEditorActionListener(this);
         mLoginEditNick.setOnEditorActionListener(this);
         mLoginEditMakepsw.setOnEditorActionListener(this);
-        if (mUserData.getOnlogin() == mUserData.getCompareOnlogin())
-            mLoginEditUsername.setText(mUserData.getUser_nickname());
+       /* if (mUserData.getOnlogin() == mUserData.getCompareOnlogin())
+            mLoginEditUsername.setText(mUserData.getUser_nickname());*/
     }
 
     @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick, R.id.login_btn_backpsw, R.id.login_btn_findpsw})
     void onButtonClick(View v) {
         switch (v.getId()) {
+            case R.id.login_btn_signup:
+                convertLayout(R.id.login_btn_signup);
+                break;
+            case R.id.login_btn_login:
+                convertLayout(R.id.login_btn_login);
+                break;
+            case R.id.login_btn_backname:
+                convertLayout(R.id.login_btn_backname);
+                break;
+            case R.id.login_btn_backnick:
+                convertLayout(R.id.login_btn_backnick);
+                break;
+            case R.id.login_btn_backpsw:
+                convertLayout(R.id.login_btn_backpsw);
+                break;
+            case R.id.login_btn_findpsw:
+                Intent intent = new Intent(getApplicationContext(), ActivityFindpsw.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        switch (v.getId()) {
+            case R.id.login_edit_username:
+                break;
+            case R.id.login_edit_psw:
+                handlerUserdata(R.id.login_edit_psw);
+                break;
+            case R.id.login_edit_email:
+                if (!mLoginEditEmail.getText().toString().isEmpty()) {
+                    convertLayout(R.id.login_edit_email);
+                    handlerUserdata(R.id.login_edit_email);
+                }
+                break;
+            case R.id.login_edit_name:
+                convertLayout(R.id.login_edit_name);
+                handlerUserdata(R.id.login_edit_name);
+                break;
+            case R.id.login_edit_nick:
+                convertLayout(R.id.login_edit_nick);
+                handlerUserdata(R.id.login_edit_nick);
+                break;
+            case R.id.login_edit_makepsw:
+                handlerUserdata(R.id.login_edit_makepsw);
+                Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+        return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        ButterKnife.reset(this);
+        super.onDestroy();
+    }
+
+    public void convertLayout(int viewId) {
+        switch (viewId) {
             case R.id.login_btn_signup:
                 mLoginBtnSignup.setTextColor(Color.WHITE);
                 mLoginBtnLogin.setTextColor(Color.GRAY);
@@ -121,30 +182,28 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                 mLoginFlNickcontainer.setVisibility(View.VISIBLE);
                 mLoginFlPswcontainer.setVisibility(View.GONE);
                 break;
-            case R.id.login_btn_findpsw:
-                Intent intent = new Intent(getApplicationContext(), ActivityFindpsw.class);
-                startActivity(intent);
+            case R.id.login_edit_email:
+                mLoginFlMaincontainer.setVisibility(View.GONE);
+                mLoginflNamecontainer.setVisibility(View.VISIBLE);
+                break;
+            case R.id.login_edit_name:
+                mLoginflNamecontainer.setVisibility(View.GONE);
+                mLoginFlNickcontainer.setVisibility(View.VISIBLE);
+                break;
+            case R.id.login_edit_nick:
+                mLoginFlNickcontainer.setVisibility(View.GONE);
+                mLoginFlPswcontainer.setVisibility(View.VISIBLE);
                 break;
         }
+
     }
-
-
-    @Override
-    protected void onDestroy() {
-        ButterKnife.reset(this);
-        super.onDestroy();
-    }
-
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        switch (v.getId()) {
-            case R.id.login_edit_username:
-                break;
+    public void handlerUserdata(int viewId) {
+        switch (viewId) {
             case R.id.login_edit_psw:
                 if (mLoginEditUsername.getText().toString().isEmpty()) {
-                    mLoginTxtError.setText("사용자 이름을 입력하세요.");
+                    mLoginTxtError.setText(R.string.login_username);
                 } else if (mLoginEditPsw.getText().toString().isEmpty()) {
-                    mLoginTxtError.setText("비밀번호를 입력하세요.");
+                    mLoginTxtError.setText(R.string.login_psw);
                 } else if (mLoginEditPsw.getText().toString().equals(mUserData.getUser_password()) && mLoginEditUsername.getText().toString().equals(mUserData.getUser_nickname())) {
                     mLoginTxtError.setText("");
                     mUserData.setOnlogin(1, this);
@@ -152,37 +211,24 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
                     startActivity(intent);
                     finish();
                 } else {
-                    mLoginTxtError.setText("잘못된 사용자 이름 또는 비밀번호입니다.");
+                    mLoginTxtError.setText(R.string.login_wrongmsg);
                 }
                 //완료버튼 누르면 로그인이 되고, 메인화면으로 넘어가는 이벤트
-
                 break;
             case R.id.login_edit_email:
-                if (!mLoginEditEmail.getText().toString().isEmpty()) {
-                    mLoginFlMaincontainer.setVisibility(View.GONE);
-                    mLoginflNamecontainer.setVisibility(View.VISIBLE);
-                    mUserData.setUser_email(mLoginEditEmail.getText().toString(), this);
-                }
+                mUserData.setUser_email(mLoginEditEmail.getText().toString(), this);
                 break;
             case R.id.login_edit_name:
-                mLoginflNamecontainer.setVisibility(View.GONE);
-                mLoginFlNickcontainer.setVisibility(View.VISIBLE);
                 mUserData.setUser_name(mLoginEditName.getText().toString(), this);
                 break;
             case R.id.login_edit_nick:
-                mLoginFlNickcontainer.setVisibility(View.GONE);
-                mLoginFlPswcontainer.setVisibility(View.VISIBLE);
                 mUserData.setUser_nickname(mLoginEditNick.getText().toString(), this);
                 break;
             case R.id.login_edit_makepsw:
                 mUserData.setUser_password(mLoginEditMakepsw.getText().toString(), this);
                 mUserData.setOnlogin(1, this);
-                Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
-                startActivity(intent);
-                finish();
                 break;
-
         }
-        return false;
+
     }
 }
