@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/default_grey"
-    tools:context=".MainActivity">
+    tools:context=".ActivityLogin">
 
     <FrameLayout
-        android:id="@+id/main_layout"
+        android:id="@+id/login_fl_maincontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
@@ -27,18 +27,12 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3">
-
-                    </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="7"
-                        android:paddingTop="15dp">
+                        android:layout_weight="10"
+                        android:paddingTop="50dp">
 
                         <TextView
                             android:id="@+id/main_txt_title"
@@ -70,35 +64,45 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/signup_btn"
+                            <RelativeLayout
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom"
-                                android:layout_weight="1"
-                                android:background="#00000000"
-                                android:text="회원 가입"
-                                android:textColor="#808080"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
 
-                            <Button
-                                android:id="@+id/login_btn"
+                                <Button
+                                    android:id="@+id/login_btn_signup"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:background="#00000000"
+                                    android:text="회원 가입"
+                                    android:textColor="#808080"
+                                    android:textSize="18sp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom"
-                                android:layout_weight="1"
-                                android:background="#00000000"
-                                android:text="로그인"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <Button
+                                    android:id="@+id/login_btn_login"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:background="#00000000"
+                                    android:text="로그인"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+                            </RelativeLayout>
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
-            </FrameLayout>
+            </RelativeLayout>
 
 
-            <FrameLayout
-                android:id="@+id/layout1"
+            <RelativeLayout
+                android:id="@+id/login_rl_signup"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="5"
@@ -117,35 +121,45 @@
                         android:layout_height="0dp"
                         android:layout_weight="8">
 
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
-                            <EditText
-                                android:id="@+id/email_edit"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:background="#00000000"
-                                android:gravity="center"
-                                android:hint="이메일을 입력하세요"
-                                android:imeOptions="actionNext"
-                                android:inputType="text"
-                                android:textColorHint="#33000000"
-                                android:textSize="15sp" />
+                                android:layout_weight="1">
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                                <EditText
+                                    android:id="@+id/login_edit_email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#00000000"
+                                    android:gravity="center"
+                                    android:hint="이메일을 입력하세요"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="text"
+                                    android:textColorHint="#33000000"
+                                    android:textSize="15sp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="Facebook으로 로그인"
-                                android:textColor="@color/default_blue"
-                                android:textStyle="bold" />
-                        </LinearLayout>
+                                android:layout_weight="1">
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center"
+                                    android:text="Facebook으로 로그인"
+                                    android:textColor="@color/default_blue"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                        </LinearLayout>
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -163,7 +177,6 @@
                             android:gravity="center"
                             android:text="또는"
                             android:textColor="#33000000" />
-
 
                     </RelativeLayout>
 
@@ -184,10 +197,10 @@
                             android:textColor="#33000000" />
                     </RelativeLayout>
                 </LinearLayout>
-            </FrameLayout>
+            </RelativeLayout>
 
-            <FrameLayout
-                android:id="@+id/layout2"
+            <RelativeLayout
+                android:id="@+id/login_rl_login"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="5"
@@ -216,7 +229,7 @@
                                 android:layout_weight="1">
 
                                 <EditText
-                                    android:id="@+id/username_edit"
+                                    android:id="@+id/login_edit_username"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="#00000000"
@@ -245,7 +258,7 @@
                                     android:orientation="horizontal">
 
                                     <EditText
-                                        android:id="@+id/password_edit"
+                                        android:id="@+id/login_edit_psw"
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
@@ -253,28 +266,28 @@
                                         android:hint="비밀번호"
                                         android:imeOptions="actionDone"
                                         android:inputType="text"
-                                        android:nextFocusDown="@id/username_edit"
+                                        android:nextFocusDown="@id/login_edit_username"
                                         android:textColorHint="#33000000"
                                         android:textSize="15sp" />
 
                                     <Button
-                                        android:id="@+id/findpsw_btn"
+                                        android:id="@+id/login_btn_findpsw"
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
+                                        android:background="#00000000"
                                         android:gravity="center|right"
                                         android:text="비밀번호를 잊으셨나요?"
-                                        android:background="#00000000"
                                         android:textColor="@color/default_blue"
-                                        android:textSize="15sp"/>
+                                        android:textSize="15sp" />
                                 </LinearLayout>
 
 
-                                <LinearLayout
+                                <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="0.1dp"
                                     android:layout_alignParentBottom="true"
-                                    android:background="#33000000"></LinearLayout>
+                                    android:background="#33000000"></ImageView>
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -283,7 +296,7 @@
                                 android:layout_weight="5">
 
                                 <TextView
-                                    android:id="@+id/error_txt"
+                                    android:id="@+id/login_txt_error"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
@@ -296,23 +309,29 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="0.1dp"
                             android:layout_alignParentBottom="true"
-                            android:background="#33000000"></LinearLayout>
+                            android:background="#33000000"></ImageView>
 
                     </RelativeLayout>
 
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|bottom"
                         android:layout_marginBottom="-10dp"
-                        android:layout_marginTop="-10dp"
-                        android:background="@color/default_grey"
-                        android:text="또는"
-                        android:textColor="#33000000" />
+                        android:layout_marginTop="-10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/default_grey"
+                            android:text="또는"
+                            android:textColor="#33000000" />
+                    </RelativeLayout>
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -333,12 +352,12 @@
 
                     </RelativeLayout>
                 </LinearLayout>
-            </FrameLayout>
+            </RelativeLayout>
         </LinearLayout>
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/name_layout"
+        android:id="@+id/login_fl_namecontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -370,36 +389,45 @@
                             android:background="#11000000"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/backsign_btn"
+                            <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="#00000000"
-                                android:text="뒤로"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:layout_weight="1">
 
-                            <LinearLayout
+                                <Button
+                                    android:id="@+id/login_btn_backname"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#00000000"
+                                    android:text="뒤로"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+
+                            <ImageView
                                 android:layout_width="1dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="10dp"
                                 android:layout_marginTop="10dp"
-                                android:background="@color/white"></LinearLayout>
+                                android:background="@color/white"></ImageView>
 
-                            <TextView
+                            <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="6"
-                                android:gravity="center|left"
-                                android:paddingLeft="10dp"
-                                android:text="이름"
-                                android:textColor="@color/white"
-                                android:textSize="15sp" />
+                                android:layout_weight="6">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|left"
+                                    android:paddingLeft="10dp"
+                                    android:text="이름"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp" />
+                            </RelativeLayout>
                         </LinearLayout>
-
-
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -427,7 +455,6 @@
                             android:text="친구들의 사진과 동영상을 보려면 가입하세요."
                             android:textColor="@color/white" />
                     </RelativeLayout>
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -449,7 +476,7 @@
                         android:layout_weight="1">
 
                         <EditText
-                            android:id="@+id/name_edit"
+                            android:id="@+id/login_edit_name"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="#00000000"
@@ -460,13 +487,11 @@
                             android:textColorHint="#33000000"
                             android:textSize="15sp" />
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="0.1dp"
                             android:layout_alignParentBottom="true"
-                            android:background="#33000000">
-
-                        </LinearLayout>
+                            android:background="#33000000"></ImageView>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -482,7 +507,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/nickname_layout"
+        android:id="@+id/login_fl_nickcontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -514,36 +539,45 @@
                             android:background="#11000000"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/backname_btn"
+                            <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="#00000000"
-                                android:text="뒤로"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:layout_weight="1">
 
-                            <LinearLayout
+                                <Button
+                                    android:id="@+id/login_btn_backnick"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#00000000"
+                                    android:text="뒤로"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+
+                            <ImageView
                                 android:layout_width="1dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="10dp"
                                 android:layout_marginTop="10dp"
-                                android:background="@color/white"></LinearLayout>
+                                android:background="@color/white"></ImageView>
 
-                            <TextView
+                            <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="6"
-                                android:gravity="center|left"
-                                android:paddingLeft="10dp"
-                                android:text="사용자 이름"
-                                android:textColor="@color/white"
-                                android:textSize="15sp" />
+                                android:layout_weight="6">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|left"
+                                    android:paddingLeft="10dp"
+                                    android:text="사용자 이름"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp" />
+                            </RelativeLayout>
                         </LinearLayout>
-
-
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -571,7 +605,6 @@
                             android:text="친구들의 사진과 동영상을 보려면 가입하세요."
                             android:textColor="@color/white" />
                     </RelativeLayout>
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -593,7 +626,7 @@
                         android:layout_weight="1">
 
                         <EditText
-                            android:id="@+id/nickname_edit"
+                            android:id="@+id/login_edit_nick"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="#00000000"
@@ -604,29 +637,24 @@
                             android:textColorHint="#33000000"
                             android:textSize="15sp" />
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="0.1dp"
                             android:layout_alignParentBottom="true"
-                            android:background="#33000000">
-
-                        </LinearLayout>
+                            android:background="#33000000"></ImageView>
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="4">
-
-                    </RelativeLayout>
+                        android:layout_weight="4"></RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
-
         </LinearLayout>
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/password_layout"
+        android:id="@+id/login_fl_pswcontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -658,36 +686,45 @@
                             android:background="#11000000"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/backnick_btn"
+                            <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="#00000000"
-                                android:text="뒤로"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:layout_weight="1">
 
-                            <LinearLayout
+                                <Button
+                                    android:id="@+id/login_btn_backpsw"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#00000000"
+                                    android:text="뒤로"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+
+                            <ImageView
                                 android:layout_width="1dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="10dp"
                                 android:layout_marginTop="10dp"
-                                android:background="@color/white"></LinearLayout>
+                                android:background="@color/white"></ImageView>
 
-                            <TextView
+                            <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="6"
-                                android:gravity="center|left"
-                                android:paddingLeft="10dp"
-                                android:text="비밀번호"
-                                android:textColor="@color/white"
-                                android:textSize="15sp" />
+                                android:layout_weight="6">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|left"
+                                    android:paddingLeft="10dp"
+                                    android:text="비밀번호"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp" />
+                            </RelativeLayout>
                         </LinearLayout>
-
-
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -715,7 +752,6 @@
                             android:text="친구들의 사진과 동영상을 보려면 가입하세요."
                             android:textColor="@color/white" />
                     </RelativeLayout>
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -737,7 +773,7 @@
                         android:layout_weight="1">
 
                         <EditText
-                            android:id="@+id/password1_edit"
+                            android:id="@+id/login_edit_makepsw"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="#00000000"
@@ -748,13 +784,13 @@
                             android:textColorHint="#33000000"
                             android:textSize="15sp" />
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="0.1dp"
                             android:layout_alignParentBottom="true"
                             android:background="#33000000">
 
-                        </LinearLayout>
+                        </ImageView>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -765,7 +801,6 @@
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
-
         </LinearLayout>
     </FrameLayout>
 </RelativeLayout>
