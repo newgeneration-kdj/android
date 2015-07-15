@@ -27,7 +27,7 @@
                     android:id="@+id/search_rl_backsign"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="15"
+                    android:layout_weight="1"
                     android:visibility="gone">
 
                     <Button
@@ -46,15 +46,18 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="85">
+                    android:layout_weight="6">
 
                     <EditText
                         android:id="@+id/search_edit_search"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
                         android:hint="검색"
-                        android:paddingLeft="15sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:textColorHint="@color/light_blue" />
 
                 </RelativeLayout>

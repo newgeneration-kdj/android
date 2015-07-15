@@ -14,7 +14,7 @@
             android:id="@+id/main_rl_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="95">
+            android:layout_weight="100">
 
         </RelativeLayout>
 

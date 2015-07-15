@@ -30,10 +30,10 @@
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:gravity="center_vertical"
-                        android:paddingLeft="15sp"
+                        android:paddingLeft="10dp"
                         android:text="DANDISNAP"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                 </RelativeLayout>
 

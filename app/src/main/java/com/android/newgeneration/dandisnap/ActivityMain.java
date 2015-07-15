@@ -20,7 +20,7 @@ import butterknife.OnClick;
 public class ActivityMain extends Activity {
 
     com.android.newgeneration.dandisnap.Home.FragmentHome FragmentHome;
-    FragmentAction FragmentActivity;
+    com.android.newgeneration.dandisnap.Action.FragmentAction FragmentAction;
     com.android.newgeneration.dandisnap.Profile.FragmentProfile FragmentProfile;
     com.android.newgeneration.dandisnap.Search.FragmentSearch FragmentSearch;
 
@@ -45,7 +45,7 @@ public class ActivityMain extends Activity {
 
     public void setInit() {
         FragmentHome = new FragmentHome();
-        FragmentActivity = new FragmentAction();
+        FragmentAction = new FragmentAction();
         FragmentProfile = new FragmentProfile();
         FragmentSearch = new FragmentSearch();
         getFragmentManager().beginTransaction().add(R.id.main_rl_container, FragmentHome).commit();
@@ -55,20 +55,20 @@ public class ActivityMain extends Activity {
     void onButtonClick(Button btn) {
         switch (btn.getId()) {
             case R.id.main_btn_home:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentHome).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentHome).commit();
                 break;
             case R.id.main_btn_search:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentSearch).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentSearch).commit();
                 break;
             case R.id.main_btn_camera:
                 Intent intent = new Intent(this, ActivityCamera.class);
                 startActivity(intent);
                 break;
             case R.id.main_btn_action:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentActivity).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentAction).commit();
                 break;
             case R.id.main_btn_profile:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_layout, FragmentProfile).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentProfile).commit();
                 break;
         }
     }

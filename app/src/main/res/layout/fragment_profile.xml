@@ -25,7 +25,7 @@
                     android:id="@+id/profile_rl_backsign"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="15"
+                    android:layout_weight="1"
                     android:visibility="gone">
 
                     <Button
@@ -42,9 +42,19 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/profile_rl_bar"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:visibility="gone">
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="85">
+                    android:layout_weight="6">
 
                     <TextView
                         android:id="@+id/profile_txt_title"
@@ -52,10 +62,10 @@
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:gravity="center_vertical"
-                        android:paddingLeft="15sp"
+                        android:paddingLeft="10dp"
                         android:text="MYNAME"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                 </RelativeLayout>
 
@@ -63,7 +73,7 @@
                     android:id="@+id/profile_rl_option"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="15"
+                    android:layout_weight="1"
                     android:visibility="visible">
 
                     <Button
@@ -352,8 +362,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -375,8 +384,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -398,8 +406,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -444,8 +451,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -467,8 +473,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -490,8 +495,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -513,8 +517,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:id="@+id/profile_txt_logout"
@@ -560,8 +563,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -583,8 +585,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -606,8 +607,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/light_grey">
+                        android:layout_height="45dp">
 
                         <TextView
                             android:layout_width="match_parent"

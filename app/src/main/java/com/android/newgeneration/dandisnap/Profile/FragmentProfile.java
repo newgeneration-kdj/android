@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.newgeneration.dandisnap.Login.ActivityLogin;
@@ -21,6 +22,7 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
     Button mProfileBtnBacksign, mProfileBtnOption;
     FrameLayout mProfileFlProfile,mProfileFlOption;
     TextView mProfileTxtTitle, mProfileTxtLogout;
+    RelativeLayout mProfileRlBacksign, mProfileRlOption, mProfileRlBar;
     UserData mUserdata = UserData.getInstance();
 
     @Override
@@ -35,6 +37,9 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         mProfileBtnOption.setOnClickListener(this);
         mProfileFlProfile = (FrameLayout) v.findViewById(R.id.profile_fl_profile);
         mProfileFlOption = (FrameLayout) v.findViewById(R.id.profile_fl_option);
+        mProfileRlBar = (RelativeLayout) v.findViewById(R.id.profile_rl_bar);
+        mProfileRlBacksign = (RelativeLayout) v.findViewById(R.id.profile_rl_backsign);
+        mProfileRlOption = (RelativeLayout) v.findViewById(R.id.profile_rl_option);
         mProfileTxtTitle = (TextView) v.findViewById(R.id.profile_txt_title);
         return v;
     }
@@ -44,19 +49,21 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.profile_btn_backsign:
-                mProfileBtnBacksign.setVisibility(View.GONE);
-                mProfileBtnOption.setVisibility(View.VISIBLE);
+                mProfileRlBacksign.setVisibility(View.GONE);
+                mProfileRlOption.setVisibility(View.VISIBLE);
                 mProfileTxtTitle.setText("MYNAME");
                 mProfileFlProfile.setVisibility(View.VISIBLE);
                 mProfileFlOption.setVisibility(View.GONE);
+                mProfileRlBar.setVisibility(View.GONE);
                 break;
 
             case R.id.profile_btn_option:
-                mProfileBtnBacksign.setVisibility(View.VISIBLE);
-                mProfileBtnOption.setVisibility(View.GONE);
+                mProfileRlBacksign.setVisibility(View.VISIBLE);
+                mProfileRlOption.setVisibility(View.GONE);
                 mProfileTxtTitle.setText(R.string.title_option);
                 mProfileFlProfile.setVisibility(View.GONE);
                 mProfileFlOption.setVisibility(View.VISIBLE);
+                mProfileRlBar.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.profile_txt_logout:
