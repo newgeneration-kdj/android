@@ -6,11 +6,11 @@
     tools:context=".ActivityMain">
 
     <com.android.newgeneration.dandisnap.Camera.MyCameraSurface
-        android:id="@+id/previewFrame"
+        android:id="@+id/camera_previewFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
@@ -31,26 +31,37 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/camera_close_btn"
-                        android:text="닫기"
-                        android:textColor="@color/white"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="15"
-                        android:background="@color/dark_grey"/>
+                        android:layout_weight="15">
+
+                        <Button
+                            android:id="@+id/camera_btn_close"
+                            android:text="닫기"
+                            android:textColor="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_grey"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="85">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="85"
                         android:layout_centerVertical="true"
                         android:text="사진"
                         android:textColor="@color/white"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:paddingLeft="15sp"
                         android:textSize="20sp"
                         android:gravity="center_vertical"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -71,7 +82,7 @@
                 android:background="@color/dark_grey">
 
                 <Button
-                    android:id="@+id/camera_shutter_btn"
+                    android:id="@+id/camera_btn_shutter"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:text="셔터"
@@ -94,29 +105,33 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_weight="1"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textColor="@color/white"
-                        android:text="갤러리"
-                        android:gravity="center"/>
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:textColor="@color/white"
-                        android:text="사진"
-                        android:gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/white"
+                            android:text="갤러리"
+                            android:gravity="center"/>
 
-                    <TextView
-                        android:layout_weight="1"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textColor="@color/white"
-                        android:text="동영상"
-                        android:gravity="center"/>
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/white"
+                            android:text="사진"
+                            android:gravity="center"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -126,7 +141,7 @@
         </LinearLayout>
 
 
-    </FrameLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

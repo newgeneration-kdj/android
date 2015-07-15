@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/fragment_layout"
+            android:id="@+id/main_rl_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="95">
@@ -29,45 +29,80 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/fragment_home_btn"
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/dark_grey"
-                    android:text="1"/>
+                    android:layout_weight="1">
 
-                <Button
-                    android:id="@+id/fragment_search_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/dark_grey"
-                    android:text="2"/>
+                    <Button
+                        android:id="@+id/main_btn_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/dark_grey"
+                        android:text="1"/>
 
-                <Button
-                    android:id="@+id/fragment_camera_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/default_blue"
-                    android:text="3"/>
+                </RelativeLayout>
 
-                <Button
-                    android:id="@+id/fragment_activity_btn"
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/dark_grey"
-                    android:text="4"/>
+                    android:layout_weight="1">
 
-                <Button
-                    android:id="@+id/fragment_profile_btn"
+                    <Button
+                        android:id="@+id/main_btn_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/dark_grey"
+                        android:text="2"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/dark_grey"
-                    android:text="5"/>
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/main_btn_camera"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/default_blue"
+                        android:text="3"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/main_btn_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/dark_grey"
+                        android:text="4"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/main_btn_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/dark_grey"
+                        android:text="5"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
 

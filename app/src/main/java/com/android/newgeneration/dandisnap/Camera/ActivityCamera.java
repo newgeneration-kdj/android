@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.newgeneration.dandisnap.MyCameraSurface;
 import com.android.newgeneration.dandisnap.R;
 
 import java.io.File;
@@ -21,16 +20,16 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 
-public class ActivityCamera extends Activity{
+public class ActivityCamera extends Activity {
 
     String mRootPath;
-    static final String PICFOLDER = "Camera";
-    @InjectView(R.id.camera_shutter_btn)
-    Button camera_shutter_btn;
-    @InjectView(R.id.camera_close_btn)
-    Button camera_close_btn;
-    @InjectView(R.id.previewFrame)
-    MyCameraSurface mSurface;
+    static final String PICFOLDER = "/DCIM/Camera";
+    @InjectView(R.id.camera_btn_shutter)
+    Button mCameraBtnShutter;
+    @InjectView(R.id.camera_btn_close)
+    Button mCameraBtnClose;
+    @InjectView(R.id.camera_previewFrame)
+    MyCameraSurface mMyCameraSurface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,7 @@ public class ActivityCamera extends Activity{
 
         ButterKnife.inject(this);
 
-        mRootPath = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                "/DCIM/" + PICFOLDER;
+        mRootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + PICFOLDER;
 
         File fRoot = new File(mRootPath);
         if (fRoot.exists() == false) {
@@ -53,13 +51,13 @@ public class ActivityCamera extends Activity{
         }
     }
 
-    @OnClick({R.id.camera_shutter_btn, R.id.camera_close_btn})
+    @OnClick({R.id.camera_btn_shutter, R.id.camera_btn_close})
     void onButtonClick(Button btn) {
-        switch(btn.getId()){
-            case R.id.camera_shutter_btn :
-                mSurface.mCamera.autoFocus(mAutoFocus);
+        switch (btn.getId()) {
+            case R.id.camera_btn_shutter:
+                mMyCameraSurface.mCamera.autoFocus(mAutoFocus);
                 break;
-            case R.id.camera_close_btn :
+            case R.id.camera_btn_close:
                 finish();
                 break;
         }
@@ -68,8 +66,8 @@ public class ActivityCamera extends Activity{
 
     Camera.AutoFocusCallback mAutoFocus = new Camera.AutoFocusCallback() {
         public void onAutoFocus(boolean success, Camera camera) {
-            camera_shutter_btn.setEnabled(success);
-            mSurface.mCamera.takePicture(null, null, mPicture);
+            mCameraBtnShutter.setEnabled(success);
+            mMyCameraSurface.mCamera.takePicture(null, null, mPicture);
 
         }
     };

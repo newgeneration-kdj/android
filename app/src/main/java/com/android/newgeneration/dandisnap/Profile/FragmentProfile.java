@@ -18,25 +18,24 @@ import com.android.newgeneration.dandisnap.R;
 
 public class FragmentProfile extends Fragment implements View.OnClickListener {
 
-    Button fragment_backsign_btn, fragment_option_btn;
-    FrameLayout layout1;
-    FrameLayout layout2;
-    TextView fragment_profile_title_txt, fragment_option_logout_txt;
-    UserData userdata = UserData.getInstance();
+    Button mProfileBtnBacksign, mProfileBtnOption;
+    FrameLayout mProfileFlProfile,mProfileFlOption;
+    TextView mProfileTxtTitle, mProfileTxtLogout;
+    UserData mUserdata = UserData.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        fragment_option_logout_txt = (TextView) v.findViewById(R.id.fragment_option_logout_txt);
-        fragment_option_logout_txt.setOnClickListener(this);
-        fragment_backsign_btn = (Button) v.findViewById(R.id.fragment_backsign_btn);
-        fragment_backsign_btn.setOnClickListener(this);
-        fragment_option_btn = (Button) v.findViewById(R.id.fragment_option_btn);
-        fragment_option_btn.setOnClickListener(this);
-        layout1 = (FrameLayout) v.findViewById(R.id.layout1);
-        layout2 = (FrameLayout) v.findViewById(R.id.layout2);
-        fragment_profile_title_txt = (TextView) v.findViewById(R.id.fragment_profile_title_txt);
+        mProfileTxtLogout = (TextView) v.findViewById(R.id.profile_txt_logout);
+        mProfileTxtLogout.setOnClickListener(this);
+        mProfileBtnBacksign = (Button) v.findViewById(R.id.profile_btn_backsign);
+        mProfileBtnBacksign.setOnClickListener(this);
+        mProfileBtnOption = (Button) v.findViewById(R.id.profile_btn_option);
+        mProfileBtnOption.setOnClickListener(this);
+        mProfileFlProfile = (FrameLayout) v.findViewById(R.id.profile_fl_profile);
+        mProfileFlOption = (FrameLayout) v.findViewById(R.id.profile_fl_option);
+        mProfileTxtTitle = (TextView) v.findViewById(R.id.profile_txt_title);
         return v;
     }
 
@@ -44,23 +43,23 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.fragment_backsign_btn:
-                fragment_backsign_btn.setVisibility(View.GONE);
-                fragment_option_btn.setVisibility(View.VISIBLE);
-                fragment_profile_title_txt.setText("MYNAME");
-                layout1.setVisibility(View.VISIBLE);
-                layout2.setVisibility(View.GONE);
+            case R.id.profile_btn_backsign:
+                mProfileBtnBacksign.setVisibility(View.GONE);
+                mProfileBtnOption.setVisibility(View.VISIBLE);
+                mProfileTxtTitle.setText("MYNAME");
+                mProfileFlProfile.setVisibility(View.VISIBLE);
+                mProfileFlOption.setVisibility(View.GONE);
                 break;
 
-            case R.id.fragment_option_btn:
-                fragment_backsign_btn.setVisibility(View.VISIBLE);
-                fragment_option_btn.setVisibility(View.GONE);
-                fragment_profile_title_txt.setText(R.string.title_option);
-                layout1.setVisibility(View.GONE);
-                layout2.setVisibility(View.VISIBLE);
+            case R.id.profile_btn_option:
+                mProfileBtnBacksign.setVisibility(View.VISIBLE);
+                mProfileBtnOption.setVisibility(View.GONE);
+                mProfileTxtTitle.setText(R.string.title_option);
+                mProfileFlProfile.setVisibility(View.GONE);
+                mProfileFlOption.setVisibility(View.VISIBLE);
                 break;
 
-            case R.id.fragment_option_logout_txt:
+            case R.id.profile_txt_logout:
                 //로그아웃
                 askLogout();
                 break;
@@ -80,7 +79,7 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         alert_ask.setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                userdata.setOnlogin(0, getActivity());
+                mUserdata.setOnlogin(0, getActivity());
                 Intent intent = new Intent(getActivity().getApplicationContext(), ActivityLogin.class);
                 startActivity(intent);
                 getActivity().finish();

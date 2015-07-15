@@ -21,46 +21,67 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/fragment_backsign_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="15"
-                    android:background="@color/default_blue"
-                    android:gravity="center"
-                    android:text="뒤로"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/fragment_profile_title_txt"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="85"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15sp"
-                    android:text="MYNAME"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-                <Button
-                    android:id="@+id/fragment_option_btn"
+                <RelativeLayout
+                    android:id="@+id/profile_rl_backsign"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="15"
-                    android:background="@color/default_blue"
-                    android:text="버튼"
-                    android:textColor="@color/white" />
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/profile_btn_backsign"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@color/default_blue"
+                        android:gravity="center"
+                        android:text="뒤로"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85">
+
+                    <TextView
+                        android:id="@+id/profile_txt_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="15sp"
+                        android:text="MYNAME"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/profile_rl_option"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    android:visibility="visible">
+
+                    <Button
+                        android:id="@+id/profile_btn_option"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/default_blue"
+                        android:text="버튼"
+                        android:textColor="@color/white" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
         </RelativeLayout>
 
         <FrameLayout
-            android:id="@+id/layout1"
+            android:id="@+id/profile_fl_profile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="90"
@@ -85,108 +106,168 @@
                         android:layout_marginTop="15dp"
                         android:orientation="horizontal">
 
-                        <ImageButton
+                        <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="1" />
+                            android:layout_weight="1">
 
-                        <LinearLayout
+                            <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="15dp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="2"
-                            android:orientation="vertical">
+                            android:layout_weight="2">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="5"
-                                    android:textColor="@color/dark_grey"
-                                    android:textSize="17sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="10"
-                                    android:textColor="@color/dark_grey"
-                                    android:textSize="17sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="15"
-                                    android:textColor="@color/dark_grey"
-                                    android:textSize="17sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="게시물"
-                                    android:textColor="@color/light_grey"
-                                    android:textSize="15sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="팔로워"
-                                    android:textColor="@color/light_grey"
-                                    android:textSize="15sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="팔로잉"
-                                    android:textColor="@color/light_grey"
-                                    android:textSize="15sp" />
-
-
-                            </LinearLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="2">
-
-                                <Button
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:background="@color/light_grey"
-                                    android:gravity="center"
-                                    android:text="프로필 수정"
-                                    android:textColor="@color/dark_grey"
-                                    android:textSize="15sp" />
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1">
 
-                            </RelativeLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:text="5"
+                                                android:textColor="@color/dark_grey"
+                                                android:textSize="17sp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:text="10"
+                                                android:textColor="@color/dark_grey"
+                                                android:textSize="17sp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:text="15"
+                                                android:textColor="@color/dark_grey"
+                                                android:textSize="17sp" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:text="게시물"
+                                                android:textColor="@color/light_grey"
+                                                android:textSize="15sp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:text="팔로워"
+                                                android:textColor="@color/light_grey"
+                                                android:textSize="15sp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:text="팔로워"
+                                                android:textColor="@color/light_grey"
+                                                android:textSize="15sp" />
+
+                                        </RelativeLayout>
 
 
-                        </LinearLayout>
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2">
+
+                                    <Button
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:background="@color/light_grey"
+                                        android:gravity="center"
+                                        android:text="프로필 수정"
+                                        android:textColor="@color/dark_grey"
+                                        android:textSize="15sp" />
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
 
                     </LinearLayout>
 
@@ -210,49 +291,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="10">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="1" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="2" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="3" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="4" />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="50">
+                    android:layout_weight="60">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -271,7 +310,7 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/layout2"
+            android:id="@+id/profile_fl_option"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="90"
@@ -284,195 +323,309 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_marginTop="15dp"
-                        android:paddingLeft="10sp"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="20sp"
-                        android:gravity="center_vertical"
-                        android:text="팔로우"
-                        android:textColor="@color/dark_grey"/>
+                        android:layout_marginTop="15dp">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="팔로우"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="20sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="Facebook 친구 찾기"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="Facebook 친구 찾기"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="연락처 찾기"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="연락처 찾기"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="친구 초대하기"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="친구 초대하기"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:layout_marginTop="15dp"
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="20sp"
-                        android:gravity="center_vertical"
-                        android:text="계정"
-                        android:textColor="@color/dark_grey"/>
+                        android:layout_marginTop="15dp">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="계정"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="20sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="프로필 편집"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="프로필 편집하기"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="비밀번호 변경"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="비밀번호 변경"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="회원님이 좋아한 게시물"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="회원님이 좋아한 게시물"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:id="@+id/fragment_option_logout_txt"
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="로그아웃"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:id="@+id/profile_txt_logout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="로그아웃"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:layout_marginTop="15dp"
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="20sp"
-                        android:gravity="center_vertical"
-                        android:text="설정"
-                        android:textColor="@color/dark_grey"/>
+                        android:layout_marginTop="15dp">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="설정"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="20sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="연결된 계정"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="연결된 계정"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="푸시 알림"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="푸시 알림"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
 
-                    <TextView
-                        android:paddingLeft="10sp"
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:text="카메라"
-                        android:textColor="@color/dark_grey"/>
+                        android:background="@color/light_grey">
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10sp"
+                            android:text="카메라"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"/>
+                        android:background="@color/light_grey">
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
