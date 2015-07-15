@@ -15,6 +15,7 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.android.newgeneration.dandisnap.ActivityMain;
 import com.android.newgeneration.dandisnap.R;
+import com.facebook.FacebookSdk;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -66,6 +67,9 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        // Initialize the SDK before executing any other operations,
+        // especially, if you're using Facebook UI elements.
         ButterKnife.inject(this);
         mUserData.setCompareOnlogin(1, this);
         setOnEditorActionListener();
