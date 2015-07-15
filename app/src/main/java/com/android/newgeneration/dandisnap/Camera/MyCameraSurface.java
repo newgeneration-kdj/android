@@ -1,4 +1,4 @@
-package com.android.newgeneration.dandisnap;
+package com.android.newgeneration.dandisnap.Camera;
 
 import android.content.Context;
 import android.hardware.Camera;

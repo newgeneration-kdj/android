@@ -6,6 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.android.newgeneration.dandisnap.Action.FragmentActivities;
+import com.android.newgeneration.dandisnap.Camera.ActivityCamera;
+import com.android.newgeneration.dandisnap.Home.FragmentHome;
+import com.android.newgeneration.dandisnap.Profile.FragmentProfile;
+import com.android.newgeneration.dandisnap.Search.FragmentSearch;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -13,10 +19,10 @@ import butterknife.OnClick;
 
 public class ActivityMain extends Activity {
 
-    FragmentHome FragmentHome;
+    com.android.newgeneration.dandisnap.Home.FragmentHome FragmentHome;
     FragmentActivities FragmentActivity;
-    FragmentProfile FragmentProfile;
-    FragmentSearch FragmentSearch;
+    com.android.newgeneration.dandisnap.Profile.FragmentProfile FragmentProfile;
+    com.android.newgeneration.dandisnap.Search.FragmentSearch FragmentSearch;
 
     @InjectView(R.id.fragment_home_btn)
     Button fragment_home_btn;

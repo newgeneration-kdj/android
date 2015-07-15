@@ -1,4 +1,4 @@
-package com.android.newgeneration.dandisnap;
+package com.android.newgeneration.dandisnap.Profile;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.newgeneration.dandisnap.Login.ActivityLogin;
 import com.android.newgeneration.dandisnap.Login.UserData;
+import com.android.newgeneration.dandisnap.R;
 
 public class FragmentProfile extends Fragment implements View.OnClickListener {
 

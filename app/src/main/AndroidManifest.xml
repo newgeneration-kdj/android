@@ -30,7 +30,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
-            android:name=".ActivityCamera"
+            android:name=".Camera.ActivityCamera"
             android:label="@string/title_activity_activity_camera" >
         </activity>
         <activity

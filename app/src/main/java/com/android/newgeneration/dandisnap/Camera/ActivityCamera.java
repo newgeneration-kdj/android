@@ -1,4 +1,4 @@
-package com.android.newgeneration.dandisnap;
+package com.android.newgeneration.dandisnap.Camera;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.android.newgeneration.dandisnap.MyCameraSurface;
+import com.android.newgeneration.dandisnap.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

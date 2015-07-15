@@ -5,7 +5,7 @@
     android:background="@color/default_grey"
     tools:context=".ActivityMain">
 
-    <com.android.newgeneration.dandisnap.MyCameraSurface
+    <com.android.newgeneration.dandisnap.Camera.MyCameraSurface
         android:id="@+id/previewFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
