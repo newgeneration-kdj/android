@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.newgeneration.dandisnap.MyCameraSurface;
 import com.android.newgeneration.dandisnap.R;
 
 import java.io.File;

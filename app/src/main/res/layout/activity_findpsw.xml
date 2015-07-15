@@ -20,43 +20,50 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/backlogin_btn"
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/default_blue"
-                    android:text="뒤로"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:layout_weight="1">
 
-                <LinearLayout
+                    <Button
+                        android:id="@+id/findpsw_btn_backlogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/default_blue"
+                        android:text="뒤로"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+
+                <ImageView
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/white"></LinearLayout>
+                    android:background="@color/white"></ImageView>
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15sp"
-                    android:text="로그인 도움말"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:layout_weight="6">
 
-
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="15sp"
+                        android:text="로그인 도움말"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </RelativeLayout>
             </LinearLayout>
-
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
-            android:orientation="vertical">
+            android:layout_weight="10">
 
 
             <LinearLayout
@@ -66,15 +73,21 @@
                 android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="15dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10sp"
-                    android:text="비밀번호 재설정"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:paddingLeft="10sp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="비밀번호 재설정"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -156,7 +169,7 @@
             </LinearLayout>
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
