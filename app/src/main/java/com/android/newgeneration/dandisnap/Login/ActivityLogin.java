@@ -1,9 +1,9 @@
 package com.android.newgeneration.dandisnap.Login;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,14 +15,20 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.android.newgeneration.dandisnap.ActivityMain;
 import com.android.newgeneration.dandisnap.R;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
 
-public class ActivityLogin extends FragmentActivity implements OnEditorActionListener {
+public class ActivityLogin extends Activity implements OnEditorActionListener {
     @InjectView(R.id.login_btn_signup)
     Button mLoginBtnSignup;
     @InjectView(R.id.login_btn_login)
@@ -62,20 +68,45 @@ public class ActivityLogin extends FragmentActivity implements OnEditorActionLis
     @InjectView(R.id.login_btn_findpsw)
     Button mLoginBtnFindpsw;
     UserData mUserData = UserData.getInstance();
+    @InjectView(R.id.login_btn_facebook) LoginButton mLoginBtnFacebook;
+    CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         FacebookSdk.sdkInitialize(getApplicationContext());
         // Initialize the SDK before executing any other operations,
         // especially, if you're using Facebook UI elements.
+        setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         mUserData.setCompareOnlogin(1, this);
         setOnEditorActionListener();
         checkOnlogin();
+        mCallbackManager = CallbackManager.Factory.create();
+
+        LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+
+            }
+        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
     public void checkOnlogin() {
         if (mUserData.getOnlogin() == mUserData.getCompareOnlogin()) {
