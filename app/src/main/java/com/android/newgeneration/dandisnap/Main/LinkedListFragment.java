@@ -3,7 +3,7 @@ package com.android.newgeneration.dandisnap.Main;
 import android.app.Fragment;
 
 /**
- * Created by 주승환 on 2015-07-17.
+ * Created by ???? on 2015-07-17.
  */
 
 class Node {
@@ -95,7 +95,7 @@ public class LinkedListFragment {
         }
     }
 
-    //저장상태를 관찰하기 위한 함수
+    //??????쨍? ??????? ???? ???
     public void printAll() {
         node = first;
         System.out.println("*print start*");

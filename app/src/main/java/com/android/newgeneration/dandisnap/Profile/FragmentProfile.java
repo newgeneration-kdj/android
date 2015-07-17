@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.android.newgeneration.dandisnap.Login.ActivityLogin;
 import com.android.newgeneration.dandisnap.Login.UserData;
 import com.android.newgeneration.dandisnap.R;
+import com.facebook.login.LoginManager;
 
 public class FragmentProfile extends Fragment implements View.OnClickListener {
 
@@ -87,6 +88,7 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mUserdata.setOnlogin(0, getActivity());
+                LoginManager.getInstance().logOut();
                 Intent intent = new Intent(getActivity().getApplicationContext(), ActivityLogin.class);
                 startActivity(intent);
                 getActivity().finish();
