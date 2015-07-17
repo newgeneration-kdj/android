@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.android.newgeneration.dandisnap.ActivityMain;
+import com.android.newgeneration.dandisnap.Main.ActivityMain;
 import com.android.newgeneration.dandisnap.R;
 
 import butterknife.ButterKnife;

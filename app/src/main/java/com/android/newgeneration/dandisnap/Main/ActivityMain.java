@@ -1,7 +1,8 @@
 
-package com.android.newgeneration.dandisnap;
+package com.android.newgeneration.dandisnap.Main;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import com.android.newgeneration.dandisnap.Action.FragmentAction;
 import com.android.newgeneration.dandisnap.Camera.ActivityCamera;
 import com.android.newgeneration.dandisnap.Home.FragmentHome;
 import com.android.newgeneration.dandisnap.Profile.FragmentProfile;
+import com.android.newgeneration.dandisnap.R;
 import com.android.newgeneration.dandisnap.Search.FragmentSearch;
 
 import butterknife.ButterKnife;
@@ -34,6 +36,7 @@ public class ActivityMain extends Activity {
     Button mMainBtnAction;
     @InjectView(R.id.main_btn_profile)
     Button mMainBtnProfile;
+    LinkedListFragment mLinkedListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,29 +51,54 @@ public class ActivityMain extends Activity {
         FragmentAction = new FragmentAction();
         FragmentProfile = new FragmentProfile();
         FragmentSearch = new FragmentSearch();
+        mLinkedListFragment = new LinkedListFragment();
         getFragmentManager().beginTransaction().add(R.id.main_rl_container, FragmentHome).commit();
+        mLinkedListFragment.add(FragmentHome);
     }
 
     @OnClick({R.id.main_btn_home, R.id.main_btn_search, R.id.main_btn_camera, R.id.main_btn_action, R.id.main_btn_profile})
     void onButtonClick(Button btn) {
         switch (btn.getId()) {
             case R.id.main_btn_home:
-                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentHome).commit();
+                replaceFragment(FragmentHome);
                 break;
             case R.id.main_btn_search:
-                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentSearch).commit();
+                replaceFragment(FragmentSearch);
                 break;
             case R.id.main_btn_camera:
                 Intent intent = new Intent(this, ActivityCamera.class);
                 startActivity(intent);
                 break;
             case R.id.main_btn_action:
-                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentAction).commit();
+                replaceFragment(FragmentAction);
                 break;
             case R.id.main_btn_profile:
-                getFragmentManager().beginTransaction().replace(R.id.main_rl_container, FragmentProfile).commit();
+                replaceFragment(FragmentProfile);
                 break;
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        mLinkedListFragment.deleteLastNode();
+        Fragment previousFragment = mLinkedListFragment.Lastfragment();
+        if (previousFragment == null) {
+            super.onBackPressed();
+        } else {
+            getFragmentManager().beginTransaction().replace(R.id.main_rl_container, previousFragment).commit();
+        }
+    }
+
+    void replaceFragment(Fragment fragment)
+    {
+        getFragmentManager().beginTransaction().replace(R.id.main_rl_container, fragment).commit();
+        mLinkedListFragment.delete(fragment);
+        mLinkedListFragment.add(fragment);
+    }
+
 }
+
+
+
+
+
