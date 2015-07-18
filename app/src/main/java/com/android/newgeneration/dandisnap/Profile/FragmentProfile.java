@@ -21,8 +21,8 @@ import com.facebook.login.LoginManager;
 public class FragmentProfile extends Fragment implements View.OnClickListener {
 
     Button mProfileBtnBacksign, mProfileBtnOption;
-    FrameLayout mProfileFlProfile,mProfileFlOption;
-    TextView mProfileTxtTitle, mProfileTxtLogout;
+    FrameLayout mProfileFlProfile, mProfileFlOption;
+    TextView mProfileTxtTitle, mProfileTxtLogout, mProfileTxtName;
     RelativeLayout mProfileRlBacksign, mProfileRlOption, mProfileRlBar;
     UserData mUserdata = UserData.getInstance();
 
@@ -42,6 +42,8 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         mProfileRlBacksign = (RelativeLayout) v.findViewById(R.id.profile_rl_backsign);
         mProfileRlOption = (RelativeLayout) v.findViewById(R.id.profile_rl_option);
         mProfileTxtTitle = (TextView) v.findViewById(R.id.profile_txt_title);
+        mProfileTxtName = (TextView) v.findViewById(R.id.profile_txt_name);
+        setText();
         return v;
     }
 
@@ -52,7 +54,7 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
             case R.id.profile_btn_backsign:
                 mProfileRlBacksign.setVisibility(View.GONE);
                 mProfileRlOption.setVisibility(View.VISIBLE);
-                mProfileTxtTitle.setText("MYNAME");
+                setText();
                 mProfileFlProfile.setVisibility(View.VISIBLE);
                 mProfileFlOption.setVisibility(View.GONE);
                 mProfileRlBar.setVisibility(View.GONE);
@@ -97,4 +99,18 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         alert_ask.show();
     }
 
+    public void setText() {
+        if (mUserdata.getUser_nickname() != null) {
+            mProfileTxtTitle.setText(mUserdata.getUser_nickname());
+        } else {
+            mProfileTxtTitle.setText("MYNAME");
+        }
+        if (mUserdata.getUser_nickname() != null) {
+            mProfileTxtName.setText(mUserdata.getUser_name());
+        }
+
+
+    }
+
 }
+

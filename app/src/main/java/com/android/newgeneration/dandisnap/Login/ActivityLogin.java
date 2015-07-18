@@ -92,39 +92,6 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         setOnEditorActionListener();
         checkOnlogin();
         setInit();
-        mCallbackManager = CallbackManager.Factory.create();
-        //    mLoginBtnFacebook.setReadPermissions("email,public_profile");
-        mLoginBtnFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
-                        if(!mUserData.getUser_name().equals(jsonObject.optString("name"))) {
-                            convertLayout(R.id.login_edit_email);
-                            mLoginEditName.setText(jsonObject.optString("name"));
-                        }else{
-                            Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
-                            startActivity(intent);
-                            finish();
-                            mUserData.setOnlogin(1, getApplicationContext());
-                        }
-                    }
-                });
-                request.executeAsync();
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-
-            }
-        });
     }
 
     @Override
@@ -170,7 +137,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
             mLoginEditUsername.setText(mUserData.getUser_nickname());*/
     }
 
-    @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick, R.id.login_btn_backpsw, R.id.login_btn_findpsw})
+    @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick, R.id.login_btn_backpsw, R.id.login_btn_findpsw,R.id.login_btn_facebook})
     void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn_signup:
@@ -191,6 +158,9 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
             case R.id.login_btn_findpsw:
                 Intent intent = new Intent(getApplicationContext(), ActivityFindpsw.class);
                 startActivity(intent);
+                break;
+            case R.id.login_btn_facebook:
+                loginFacebook();
                 break;
         }
     }
@@ -309,6 +279,43 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                 break;
         }
 
+    }
+
+    public void loginFacebook(){
+        mCallbackManager = CallbackManager.Factory.create();
+        //    mLoginBtnFacebook.setReadPermissions("email,public_profile");
+        mLoginBtnFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                mAccessToken=AccessToken.getCurrentAccessToken();
+                GraphRequest request = GraphRequest.newMeRequest(mAccessToken, new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
+                        if(!mUserData.getUser_name().equals(jsonObject.optString("name"))) {
+                            convertLayout(R.id.login_edit_email);
+                            mLoginEditName.setText(jsonObject.optString("name"));
+                        }else{
+                            Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+                            startActivity(intent);
+                            finish();
+                            mUserData.setOnlogin(1, getApplicationContext());
+                        }
+                    }
+                });
+                request.executeAsync();
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+
+            }
+        });
     }
 
 

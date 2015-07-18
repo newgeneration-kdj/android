@@ -107,6 +107,23 @@ public class ActivityCamera extends Activity {
         }
     };
 
+<<<<<<< HEAD
+=======
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            if(requestCode == 100){
+                // ???? ??? ??? ??, ?????? ?????? ????????? ???? ???????? ????
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                Bitmap bm = BitmapFactory.decodeFile(path, options);
+                ivResult.setImageBitmap(bm);
+
+//				}
+            }
+        }
+    }
+>>>>>>> 44cea66a186dc918727e042274f6eef4c11247db
 
 }
 
