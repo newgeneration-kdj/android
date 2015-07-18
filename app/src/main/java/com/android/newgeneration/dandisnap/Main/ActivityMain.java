@@ -15,7 +15,6 @@ import com.android.newgeneration.dandisnap.R;
 import com.android.newgeneration.dandisnap.Search.FragmentSearch;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -39,7 +38,6 @@ public class ActivityMain extends Activity {
     Button mMainBtnAction;
     @InjectView(R.id.main_btn_profile)
     Button mMainBtnProfile;
-    List<Fragment> mListFragment;
     ArrayList<Fragment> mArrayListFragment;
 
     @Override

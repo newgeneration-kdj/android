@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.newgeneration.dandisnap">
+    package="com.android.newgeneration.dandisnap" >
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -19,9 +21,12 @@
         <activity
             android:name=".Login.ActivityLogin"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustPan" >
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,20 +34,33 @@
             android:name=".Main.ActivityMain"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Camera.ActivityCamera"
-            android:label="@string/title_activity_activity_camera"></activity>
+            android:label="@string/title_activity_activity_camera" />
         <activity
             android:name=".Login.ActivityFindpsw"
             android:label="@string/title_activity_activity_findpsw"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".Camera.ActivityCameraSave"
+            android:label="@string/title_activity_activity_camera_save" >
+        </activity>
+=======
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider667477216687513"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
+>>>>>>> 4e67f355a308bd3e166868ace8422b9f60c78b09
+>>>>>>> 6d0e6a1b787ab15b752802c4a47a643b9cdddd79
     </application>
 
 </manifest>

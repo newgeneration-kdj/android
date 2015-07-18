@@ -18,4 +18,5 @@
     <string name="login_psw">비밀번호를 입력하세요.</string>
     <string name="login_wrongmsg">잘못된 사용자 이름 또는 비밀번호입니다.</string>
     <string name="facebook_app_id">667477216687513</string>
+    <string name="title_activity_activity_camera_save">ActivityCameraSave</string>
 </resources>
