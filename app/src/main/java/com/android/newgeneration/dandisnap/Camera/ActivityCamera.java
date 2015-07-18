@@ -125,7 +125,7 @@ public class ActivityCamera extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
             if(requestCode == 100){
-                // 카메라 찍기 액션 후, 지정된 파일을 비트맵으로 꺼내 이미지뷰에 삽입
+                // ???? ??? ??? ??, ?????? ?????? ????????? ???? ???????? ????
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inPreferredConfig = Bitmap.Config.RGB_565;
                 Bitmap bm = BitmapFactory.decodeFile(path, options);
