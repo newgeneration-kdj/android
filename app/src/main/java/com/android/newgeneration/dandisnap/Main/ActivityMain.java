@@ -14,6 +14,9 @@ import com.android.newgeneration.dandisnap.Profile.FragmentProfile;
 import com.android.newgeneration.dandisnap.R;
 import com.android.newgeneration.dandisnap.Search.FragmentSearch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -36,7 +39,8 @@ public class ActivityMain extends Activity {
     Button mMainBtnAction;
     @InjectView(R.id.main_btn_profile)
     Button mMainBtnProfile;
-    LinkedListFragment mLinkedListFragment;
+    List<Fragment> mListFragment;
+    ArrayList<Fragment> mArrayListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +55,9 @@ public class ActivityMain extends Activity {
         FragmentAction = new FragmentAction();
         FragmentProfile = new FragmentProfile();
         FragmentSearch = new FragmentSearch();
-        mLinkedListFragment = new LinkedListFragment();
+        mArrayListFragment = new ArrayList<>();
         getFragmentManager().beginTransaction().add(R.id.main_rl_container, FragmentHome).commit();
-        mLinkedListFragment.add(FragmentHome);
+        mArrayListFragment.add(FragmentHome);
     }
 
     @OnClick({R.id.main_btn_home, R.id.main_btn_search, R.id.main_btn_camera, R.id.main_btn_action, R.id.main_btn_profile})
@@ -80,23 +84,26 @@ public class ActivityMain extends Activity {
 
     @Override
     public void onBackPressed() {
-        mLinkedListFragment.deleteLastNode();
-        Fragment previousFragment = mLinkedListFragment.Lastfragment();
-        if (previousFragment == null) {
+        mArrayListFragment.remove(mArrayListFragment.size() - 1);
+        if (mArrayListFragment.size() == 0) {
             super.onBackPressed();
         } else {
+            Fragment previousFragment = mArrayListFragment.get(mArrayListFragment.size() - 1);
             getFragmentManager().beginTransaction().replace(R.id.main_rl_container, previousFragment).commit();
         }
     }
 
-    void replaceFragment(Fragment fragment)
-    {
+    void replaceFragment(Fragment fragment) {
         getFragmentManager().beginTransaction().replace(R.id.main_rl_container, fragment).commit();
-        mLinkedListFragment.delete(fragment);
-        mLinkedListFragment.add(fragment);
+        int index = mArrayListFragment.indexOf(fragment);
+        if (index != -1)
+            mArrayListFragment.remove(index);
+        mArrayListFragment.add(fragment);
     }
 
 }
+
+
 
 
 
