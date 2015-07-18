@@ -12,7 +12,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 
 import com.android.newgeneration.dandisnap.Main.ActivityMain;
 import com.android.newgeneration.dandisnap.R;
@@ -23,13 +22,12 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -81,6 +79,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     CallbackManager mCallbackManager;
     AccessToken mAccessToken;
     AppEventsLogger mAppEventsLogger;
+    LoginManager mLoginManager;
 
 
     @Override
@@ -92,48 +91,40 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         mUserData.setCompareOnlogin(1, this);
         setOnEditorActionListener();
         checkOnlogin();
+        setInit();
         mCallbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(mCallbackManager,
-                new FacebookCallback<LoginResult>() {
+    //    mLoginBtnFacebook.setReadPermissions("email,public_profile");
+        mLoginBtnFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        mAccessToken = AccessToken.getCurrentAccessToken();
-                        String id = mAccessToken.getUserId();
-                        GraphRequest request = new GraphRequest(
-                                AccessToken.getCurrentAccessToken(),
-                                id,
-                                null,
-                                HttpMethod.GET,
-                                new GraphRequest.Callback() {
-                                    public void onCompleted(GraphResponse response) {
-                                             /* handle the result */
-                                        try {
-                                            Toast.makeText(getApplicationContext(), response.getJSONObject().getString("name"), Toast.LENGTH_SHORT).show();
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
-                        );
-                        request.executeAsync();
-                        mUserData.setOnlogin(1, getApplicationContext());
-                        Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
-                        startActivity(intent);
-                        finish();
-
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
+                    public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
+                        if(!mUserData.getUser_name().equals(jsonObject.optString("name"))) {
+                            convertLayout(R.id.login_edit_email);
+                            mLoginEditName.setText(jsonObject.optString("name"));
+                        }else{
+                            Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+                            startActivity(intent);
+                            finish();
+                            mUserData.setOnlogin(1, getApplicationContext());
+                        }
                     }
                 });
+                request.executeAsync();
 
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+
+            }
+        });
     }
 
     @Override
@@ -152,6 +143,12 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void setInit(){
+        if(mUserData.getUser_nickname()!=null){
+            mLoginEditUsername.setText(mUserData.getUser_nickname());
+        }
     }
 
     public void checkOnlogin() {
@@ -313,4 +310,6 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         }
 
     }
+
+
 }
