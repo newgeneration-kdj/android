@@ -90,8 +90,8 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mUserdata.setOnlogin(0, getActivity());
-                LoginManager.getInstance().logOut();
                 Intent intent = new Intent(getActivity().getApplicationContext(), ActivityLogin.class);
+                LoginManager.getInstance().logOut();
                 startActivity(intent);
                 getActivity().finish();
             }
