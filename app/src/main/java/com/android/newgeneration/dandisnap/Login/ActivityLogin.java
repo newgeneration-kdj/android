@@ -93,7 +93,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         checkOnlogin();
         setInit();
         mCallbackManager = CallbackManager.Factory.create();
-    //    mLoginBtnFacebook.setReadPermissions("email,public_profile");
+        //    mLoginBtnFacebook.setReadPermissions("email,public_profile");
         mLoginBtnFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
