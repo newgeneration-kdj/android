@@ -2,15 +2,11 @@ package com.android.newgeneration.dandisnap.Camera;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.newgeneration.dandisnap.R;
@@ -35,8 +31,6 @@ public class ActivityCamera extends Activity {
     Button mCameraBtnClose;
     @InjectView(R.id.camera_previewFrame)
     MyCameraSurface mMyCameraSurface;
-    @InjectView(R.id.ivResult)
-    ImageView ivResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,32 +103,10 @@ public class ActivityCamera extends Activity {
             Toast.makeText(getApplicationContext(), R.string.save_completed, Toast.LENGTH_SHORT).show();
             camera.startPreview();
 
-            File file2 = new File(path);
-            Uri outputFileUri = Uri.fromFile(file2);
-
-            Intent intent2 = new Intent();
-            intent2.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent2.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-
-            startActivityForResult(intent2, 100);
 
         }
     };
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK){
-            if(requestCode == 100){
-                // 카메라 찍기 액션 후, 지정된 파일을 비트맵으로 꺼내 이미지뷰에 삽입
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.RGB_565;
-                Bitmap bm = BitmapFactory.decodeFile(path, options);
-                ivResult.setImageBitmap(bm);
-
-//				}
-            }
-        }
-    }
 
 }
 
