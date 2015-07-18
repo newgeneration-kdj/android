@@ -48,19 +48,13 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-<<<<<<< HEAD
-=======
+
         <activity
             android:name=".Camera.ActivityCameraSave"
             android:label="@string/title_activity_activity_camera_save" >
         </activity>
-=======
 
-        <provider android:authorities="com.facebook.app.FacebookContentProvider667477216687513"
-            android:name="com.facebook.FacebookContentProvider"
-            android:exported="true" />
->>>>>>> 4e67f355a308bd3e166868ace8422b9f60c78b09
->>>>>>> 6d0e6a1b787ab15b752802c4a47a643b9cdddd79
+
     </application>
 
 </manifest>
