@@ -12,16 +12,24 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.android.newgeneration.dandisnap.Main.ActivityMain;
 import com.android.newgeneration.dandisnap.R;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -50,7 +58,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     @InjectView(R.id.login_edit_name)
     EditText mLoginEditName;
     @InjectView(R.id.login_btn_backname)
-    Button mloginBtnBackname;
+    Button mLoginBtnBackname;
     @InjectView(R.id.login_fl_nickcontainer)
     FrameLayout mLoginFlNickcontainer;
     @InjectView(R.id.login_edit_nick)
@@ -68,38 +76,76 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     @InjectView(R.id.login_btn_findpsw)
     Button mLoginBtnFindpsw;
     UserData mUserData = UserData.getInstance();
-    @InjectView(R.id.login_btn_facebook) LoginButton mLoginBtnFacebook;
+    @InjectView(R.id.login_btn_facebook)
+    LoginButton mLoginBtnFacebook;
     CallbackManager mCallbackManager;
+    AccessToken mAccessToken;
+    AppEventsLogger mAppEventsLogger;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
-        // Initialize the SDK before executing any other operations,
-        // especially, if you're using Facebook UI elements.
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         mUserData.setCompareOnlogin(1, this);
         setOnEditorActionListener();
         checkOnlogin();
         mCallbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(mCallbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        mAccessToken = AccessToken.getCurrentAccessToken();
+                        String id = mAccessToken.getUserId();
+                        GraphRequest request = new GraphRequest(
+                                AccessToken.getCurrentAccessToken(),
+                                id,
+                                null,
+                                HttpMethod.GET,
+                                new GraphRequest.Callback() {
+                                    public void onCompleted(GraphResponse response) {
+                                             /* handle the result */
+                                        try {
+                                            Toast.makeText(getApplicationContext(), response.getJSONObject().getString("name"), Toast.LENGTH_SHORT).show();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+                        );
+                        request.executeAsync();
+                        mUserData.setOnlogin(1, getApplicationContext());
+                        Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+                        startActivity(intent);
+                        finish();
 
-        LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
+                    }
 
-            }
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
 
-            @Override
-            public void onCancel() {
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
 
-            }
+    }
 
-            @Override
-            public void onError(FacebookException e) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAppEventsLogger.activateApp(getApplicationContext(), String.valueOf(R.string.facebook_app_id));
+    }
 
-            }
-        });
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAppEventsLogger.deactivateApp(getApplicationContext(), String.valueOf(R.string.facebook_app_id));
     }
 
     @Override
@@ -232,6 +278,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         }
 
     }
+
     public void handlerUserdata(int viewId) {
         switch (viewId) {
             case R.id.login_edit_psw:
