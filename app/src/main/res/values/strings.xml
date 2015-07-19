@@ -19,4 +19,5 @@
     <string name="login_wrongmsg">잘못된 사용자 이름 또는 비밀번호입니다.</string>
     <string name="facebook_app_id">667477216687513</string>
     <string name="title_activity_activity_camera_save">ActivityCameraSave</string>
+    <string name="title_activity_activity_option">ActivityOption</string>
 </resources>

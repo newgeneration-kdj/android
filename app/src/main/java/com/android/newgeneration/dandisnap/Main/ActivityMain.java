@@ -3,6 +3,7 @@ package com.android.newgeneration.dandisnap.Main;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -23,10 +24,10 @@ import butterknife.OnClick;
 
 public class ActivityMain extends Activity {
 
-    com.android.newgeneration.dandisnap.Home.FragmentHome FragmentHome;
-    com.android.newgeneration.dandisnap.Action.FragmentAction FragmentAction;
-    com.android.newgeneration.dandisnap.Profile.FragmentProfile FragmentProfile;
-    com.android.newgeneration.dandisnap.Search.FragmentSearch FragmentSearch;
+    com.android.newgeneration.dandisnap.Home.FragmentHome mFragmentHome;
+    com.android.newgeneration.dandisnap.Action.FragmentAction mFragmentAction;
+    com.android.newgeneration.dandisnap.Profile.FragmentProfile mFragmentProfile;
+    com.android.newgeneration.dandisnap.Search.FragmentSearch mFragmentSearch;
 
     @InjectView(R.id.main_btn_home)
     Button mMainBtnHome;
@@ -49,54 +50,76 @@ public class ActivityMain extends Activity {
     }
 
     public void setInit() {
-        FragmentHome = new FragmentHome();
-        FragmentAction = new FragmentAction();
-        FragmentProfile = new FragmentProfile();
-        FragmentSearch = new FragmentSearch();
+        mFragmentHome = new FragmentHome();
+        mFragmentAction = new FragmentAction();
+        mFragmentProfile = new FragmentProfile();
+        mFragmentSearch = new FragmentSearch();
         mArrayListFragment = new ArrayList<>();
-        getFragmentManager().beginTransaction().add(R.id.main_rl_container, FragmentHome).commit();
-        mArrayListFragment.add(FragmentHome);
+        setFragment();
+        mArrayListFragment.add(mFragmentHome);
     }
 
     @OnClick({R.id.main_btn_home, R.id.main_btn_search, R.id.main_btn_camera, R.id.main_btn_action, R.id.main_btn_profile})
     void onButtonClick(Button btn) {
         switch (btn.getId()) {
             case R.id.main_btn_home:
-                replaceFragment(FragmentHome);
+                replaceFragment(mFragmentHome);
                 break;
             case R.id.main_btn_search:
-                replaceFragment(FragmentSearch);
+                replaceFragment(mFragmentSearch);
                 break;
             case R.id.main_btn_camera:
                 Intent intent = new Intent(this, ActivityCamera.class);
                 startActivity(intent);
                 break;
             case R.id.main_btn_action:
-                replaceFragment(FragmentAction);
+                replaceFragment(mFragmentAction);
                 break;
             case R.id.main_btn_profile:
-                replaceFragment(FragmentProfile);
+                replaceFragment(mFragmentProfile);
                 break;
         }
     }
 
     @Override
     public void onBackPressed() {
+        Fragment presentFragment = mArrayListFragment.get(mArrayListFragment.size() - 1);
         mArrayListFragment.remove(mArrayListFragment.size() - 1);
         if (mArrayListFragment.size() == 0) {
             super.onBackPressed();
         } else {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.hide(presentFragment);
             Fragment previousFragment = mArrayListFragment.get(mArrayListFragment.size() - 1);
-            getFragmentManager().beginTransaction().replace(R.id.main_rl_container, previousFragment).commit();
+            ft.show(previousFragment);
+            ft.commit();
         }
     }
 
-    void replaceFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction().replace(R.id.main_rl_container, fragment).commit();
-        int index = mArrayListFragment.indexOf(fragment);
+    public void setFragment()
+    {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.add(R.id.main_rl_container, mFragmentHome);
+        ft.add(R.id.main_rl_container, mFragmentSearch);
+        ft.add(R.id.main_rl_container, mFragmentAction);
+        ft.add(R.id.main_rl_container, mFragmentProfile);
+        ft.show(mFragmentHome);
+        ft.hide(mFragmentSearch);
+        ft.hide(mFragmentAction);
+        ft.hide(mFragmentProfile);
+        ft.commit();
+    }
+
+    public void replaceFragment(Fragment nextfragment) {
+        Fragment presentFragment = mArrayListFragment.get(mArrayListFragment.size() - 1);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.hide(presentFragment);
+        ft.show(nextfragment);
+        ft.commit();
+        int index = mArrayListFragment.indexOf(nextfragment);
         if (index != -1)
             mArrayListFragment.remove(index);
-        mArrayListFragment.add(fragment);
+        mArrayListFragment.add(nextfragment);
     }
 
 }

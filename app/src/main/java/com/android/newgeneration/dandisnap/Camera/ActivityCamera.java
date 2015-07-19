@@ -23,7 +23,6 @@ import butterknife.OnClick;
 public class ActivityCamera extends Activity {
 
     String mRootPath;
-    String path;
     static final String PICFOLDER = "/DCIM/Camera";
     @InjectView(R.id.camera_btn_shutter)
     Button mCameraBtnShutter;
@@ -81,6 +80,7 @@ public class ActivityCamera extends Activity {
                     calendar.get(Calendar.YEAR) % 100, calendar.get(Calendar.MONTH) + 1,
                     calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+            String path;
             path = mRootPath + "/" + FileName;
 
             File file = new File(path);
@@ -101,29 +101,16 @@ public class ActivityCamera extends Activity {
             sendBroadcast(intent);
 
             Toast.makeText(getApplicationContext(), R.string.save_completed, Toast.LENGTH_SHORT).show();
-            camera.startPreview();
 
+            camera.stopPreview();
+
+            Intent intent2 = new Intent(getApplicationContext(),ActivityPicture.class);
+            intent2.putExtra("path",path);
+            startActivity(intent2);
 
         }
     };
 
-<<<<<<< HEAD
-=======
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK){
-            if(requestCode == 100){
-                // ???? ??? ??? ??, ?????? ?????? ????????? ???? ???????? ????
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.RGB_565;
-                Bitmap bm = BitmapFactory.decodeFile(path, options);
-                ivResult.setImageBitmap(bm);
-
-//				}
-            }
-        }
-    }
->>>>>>> 44cea66a186dc918727e042274f6eef4c11247db
 
 }
 

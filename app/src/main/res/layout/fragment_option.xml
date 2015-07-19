@@ -1,9 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/default_grey"
-    tools:context=".ActivityMain">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,8 +11,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
-            android:background="@color/default_blue">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -22,14 +19,12 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:id="@+id/profile_rl_backsign"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:visibility="gone">
+                    android:layout_weight="1">
 
                     <Button
-                        android:id="@+id/profile_btn_backsign"
+                        android:id="@+id/option_btn_backsign"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
@@ -42,14 +37,11 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/profile_rl_bar"
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:visibility="gone">
-                </RelativeLayout>
+                    android:background="@color/white"></RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -57,32 +49,15 @@
                     android:layout_weight="6">
 
                     <TextView
-                        android:id="@+id/profile_txt_title"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
+                        android:background="@color/default_blue"
                         android:gravity="center_vertical"
                         android:paddingLeft="10dp"
-                        android:text="MYNAME"
+                        android:text="옵션"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/profile_rl_option"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:visibility="visible">
-
-                    <Button
-                        android:id="@+id/profile_btn_option"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/default_blue"
-                        android:text="버튼"
-                        android:textColor="@color/white" />
 
                 </RelativeLayout>
 
@@ -90,242 +65,10 @@
 
         </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/profile_fl_profile"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="90"
-            android:visibility="visible">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="25">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="15dp"
-                        android:orientation="horizontal">
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <ImageButton
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="15dp" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="horizontal">
-
-                                        <RelativeLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:text="5"
-                                                android:textColor="@color/dark_grey"
-                                                android:textSize="17sp" />
-
-                                        </RelativeLayout>
-
-                                        <RelativeLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:text="10"
-                                                android:textColor="@color/dark_grey"
-                                                android:textSize="17sp" />
-
-                                        </RelativeLayout>
-
-                                        <RelativeLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:text="15"
-                                                android:textColor="@color/dark_grey"
-                                                android:textSize="17sp" />
-
-                                        </RelativeLayout>
-
-                                    </LinearLayout>
-
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="horizontal">
-
-                                        <RelativeLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:text="게시물"
-                                                android:textColor="@color/light_grey"
-                                                android:textSize="15sp" />
-
-                                        </RelativeLayout>
-
-                                        <RelativeLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:text="팔로워"
-                                                android:textColor="@color/light_grey"
-                                                android:textSize="15sp" />
-
-                                        </RelativeLayout>
-
-                                        <RelativeLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:text="팔로워"
-                                                android:textColor="@color/light_grey"
-                                                android:textSize="15sp" />
-
-                                        </RelativeLayout>
-
-
-                                    </LinearLayout>
-
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="2">
-
-                                    <Button
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:background="@color/light_grey"
-                                        android:gravity="center"
-                                        android:text="프로필 수정"
-                                        android:textColor="@color/dark_grey"
-                                        android:textSize="15sp" />
-
-                                </RelativeLayout>
-
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5">
-
-                    <TextView
-                        android:id="@+id/profile_txt_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20sp"
-                        android:text="myname"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="17sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="60">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="center_horizontal"
-                        android:text="회원님의 소중한 순간을 포착하여\n공유해보세요"
-                        android:textColor="@color/light_grey"
-                        android:textSize="17sp" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/profile_fl_option"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="90"
-            android:visibility="gone">
+            android:layout_weight="10">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -521,7 +264,7 @@
                         android:layout_height="45dp">
 
                         <TextView
-                            android:id="@+id/profile_txt_logout"
+                            android:id="@+id/option_txt_logout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
@@ -632,8 +375,10 @@
 
             </ScrollView>
 
-        </FrameLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>
+
+
 </RelativeLayout>
