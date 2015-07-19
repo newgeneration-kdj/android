@@ -12,22 +12,22 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.android.newgeneration.dandisnap.Main.ActivityMain;
 import com.android.newgeneration.dandisnap.R;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -75,17 +75,17 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     Button mLoginBtnFindpsw;
     UserData mUserData = UserData.getInstance();
     @InjectView(R.id.login_btn_facebook)
-    LoginButton mLoginBtnFacebook;
+    Button mLoginBtnFacebook;
     CallbackManager mCallbackManager;
-    AccessToken mAccessToken;
-    AppEventsLogger mAppEventsLogger;
-    LoginManager mLoginManager;
-
+    private static String mBufferemail = "";
+    private static String mBuffername = "";
+    private static String mBuffernick = "";
+    private static String mBufferpsw = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FacebookSdk.sdkInitialize(getApplicationContext());
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         mUserData.setCompareOnlogin(1, this);
@@ -97,23 +97,16 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     @Override
     protected void onResume() {
         super.onResume();
-        mAppEventsLogger.activateApp(getApplicationContext(), String.valueOf(R.string.facebook_app_id));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mAppEventsLogger.deactivateApp(getApplicationContext(), String.valueOf(R.string.facebook_app_id));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }
 
-    public void setInit(){
-        if(mUserData.getUser_nickname()!=null){
+    public void setInit() {
+        if (mUserData.getUser_nickname() != null) {
             mLoginEditUsername.setText(mUserData.getUser_nickname());
         }
     }
@@ -133,11 +126,9 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         mLoginEditName.setOnEditorActionListener(this);
         mLoginEditNick.setOnEditorActionListener(this);
         mLoginEditMakepsw.setOnEditorActionListener(this);
-       /* if (mUserData.getOnlogin() == mUserData.getCompareOnlogin())
-            mLoginEditUsername.setText(mUserData.getUser_nickname());*/
     }
 
-    @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick, R.id.login_btn_backpsw, R.id.login_btn_findpsw,R.id.login_btn_facebook})
+    @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick, R.id.login_btn_backpsw, R.id.login_btn_findpsw, R.id.login_btn_facebook})
     void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn_signup:
@@ -265,58 +256,90 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                 //완료버튼 누르면 로그인이 되고, 메인화면으로 넘어가는 이벤트
                 break;
             case R.id.login_edit_email:
-                mUserData.setUser_email(mLoginEditEmail.getText().toString(), this);
+                mBufferemail = mLoginEditEmail.getText().toString();
+                //mUserData.setUser_email(mLoginEditEmail.getText().toString(), this);
                 break;
             case R.id.login_edit_name:
-                mUserData.setUser_name(mLoginEditName.getText().toString(), this);
+                mBuffername = mLoginEditName.getText().toString();
+                // mUserData.setUser_name(mLoginEditName.getText().toString(), this);
                 break;
             case R.id.login_edit_nick:
-                mUserData.setUser_nickname(mLoginEditNick.getText().toString(), this);
+                mBuffernick = mLoginEditNick.getText().toString();
+                //  mUserData.setUser_nickname(mLoginEditNick.getText().toString(), this);
                 break;
             case R.id.login_edit_makepsw:
-                mUserData.setUser_password(mLoginEditMakepsw.getText().toString(), this);
+                mUserData.setUser_email(mBufferemail, this);
+                mUserData.setUser_name(mBuffername, this);
+                mUserData.setUser_nickname(mBuffernick, this);
+                mUserData.setUser_password(mBufferpsw, this);
                 mUserData.setOnlogin(1, this);
                 break;
         }
 
     }
 
-    public void loginFacebook(){
+    public void loginFacebook() {
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
         mCallbackManager = CallbackManager.Factory.create();
-        //    mLoginBtnFacebook.setReadPermissions("email,public_profile");
-        mLoginBtnFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                mAccessToken=AccessToken.getCurrentAccessToken();
-                GraphRequest request = GraphRequest.newMeRequest(mAccessToken, new GraphRequest.GraphJSONObjectCallback() {
+        LoginManager.getInstance().registerCallback(mCallbackManager,
+                new FacebookCallback<LoginResult>() {
                     @Override
-                    public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
-                        if(!mUserData.getUser_name().equals(jsonObject.optString("name"))) {
-                            convertLayout(R.id.login_edit_email);
-                            mLoginEditName.setText(jsonObject.optString("name"));
-                        }else{
-                            Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
-                            startActivity(intent);
-                            finish();
-                            mUserData.setOnlogin(1, getApplicationContext());
-                        }
+                    public void onSuccess(LoginResult loginResult) {
+                        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
+                                parseEmail(graphResponse.getJSONObject().optString("email"));
+                                if (!mUserData.getUser_email().equals(graphResponse.getJSONObject().optString("email"))) {
+                                    mBufferemail = graphResponse.getJSONObject().optString("email");
+                                    Toast.makeText(getApplicationContext(),mBufferemail,Toast.LENGTH_SHORT).show();
+                                    convertLayout(R.id.login_edit_email);
+                                    mLoginEditName.setText(mBuffername);
+                                } else {
+                                    Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+                                    startActivity(intent);
+                                    finish();
+                                    mUserData.setOnlogin(1, getApplicationContext());
+                                }
+                            }
+                        });
+                        Bundle bundle = new Bundle();
+                        bundle.putString("fields", "email");
+                        request.setParameters(bundle);
+                        request.executeAsync();
+                        /*GraphRequest graphRequest = new GraphRequest(loginResult.getAccessToken(), "/me", null, HttpMethod.GET, new GraphRequest.Callback() {
+                            @Override
+                            public void onCompleted(GraphResponse graphResponse) {
+                                Toast.makeText(getApplicationContext(),"이메일: " + graphResponse.getJSONObject().optString("email"),Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        Bundle bundle = new Bundle();
+                        bundle.putString("fields","email");
+                        graphRequest.setParameters(bundle);
+                        graphRequest.executeAsync();
+                        */
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // login cancelled
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // login error
                     }
                 });
-                request.executeAsync();
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-
-            }
-        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
+    public void parseEmail(String string) {
+        String email = string;
+        int count = email.indexOf("@");
+        mBuffername = email.substring(0, count);
+    }
 }
