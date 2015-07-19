@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -76,6 +77,8 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     UserData mUserData = UserData.getInstance();
     @InjectView(R.id.login_btn_facebook)
     Button mLoginBtnFacebook;
+    @InjectView(R.id.login_btn_facebook2)
+    Button mLoginBtnFacebook2;
     CallbackManager mCallbackManager;
     private static String mBufferemail = "";
     private static String mBuffername = "";
@@ -128,7 +131,8 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         mLoginEditMakepsw.setOnEditorActionListener(this);
     }
 
-    @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick, R.id.login_btn_backpsw, R.id.login_btn_findpsw, R.id.login_btn_facebook})
+    @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick,
+            R.id.login_btn_backpsw, R.id.login_btn_findpsw, R.id.login_btn_facebook, R.id.login_btn_facebook2})
     void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn_signup:
@@ -151,6 +155,9 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                 startActivity(intent);
                 break;
             case R.id.login_btn_facebook:
+                loginFacebook();
+                break;
+            case R.id.login_btn_facebook2:
                 loginFacebook();
                 break;
         }
@@ -279,8 +286,8 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     }
 
     public void loginFacebook() {
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
         mCallbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -291,7 +298,6 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                                 parseEmail(graphResponse.getJSONObject().optString("email"));
                                 if (!mUserData.getUser_email().equals(graphResponse.getJSONObject().optString("email"))) {
                                     mBufferemail = graphResponse.getJSONObject().optString("email");
-                                    Toast.makeText(getApplicationContext(),mBufferemail,Toast.LENGTH_SHORT).show();
                                     convertLayout(R.id.login_edit_email);
                                     mLoginEditName.setText(mBuffername);
                                 } else {
@@ -306,36 +312,33 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                         bundle.putString("fields", "email");
                         request.setParameters(bundle);
                         request.executeAsync();
-                        /*GraphRequest graphRequest = new GraphRequest(loginResult.getAccessToken(), "/me", null, HttpMethod.GET, new GraphRequest.Callback() {
-                            @Override
-                            public void onCompleted(GraphResponse graphResponse) {
-                                Toast.makeText(getApplicationContext(),"이메일: " + graphResponse.getJSONObject().optString("email"),Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        Bundle bundle = new Bundle();
-                        bundle.putString("fields","email");
-                        graphRequest.setParameters(bundle);
-                        graphRequest.executeAsync();
-                        */
                     }
 
                     @Override
                     public void onCancel() {
-                        // login cancelled
+                        Log.e("TEST", "CANCEL BTN");
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
-                        // login error
+                        Toast.makeText(getApplicationContext(), "로그인 에러", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), exception.toString(), Toast.LENGTH_SHORT).show();
+                        LoginManager.getInstance().logOut();
                     }
                 });
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        try {
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     public void parseEmail(String string) {
         String email = string;

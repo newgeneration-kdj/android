@@ -22,16 +22,8 @@
             android:name=".Login.ActivityLogin"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-<<<<<<< HEAD
             android:windowSoftInputMode="stateAlwaysVisible|adjustPan" >
-=======
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            
->>>>>>> 44cea66a186dc918727e042274f6eef4c11247db
-=======
-            android:windowSoftInputMode="stateAlwaysVisible">
 
->>>>>>> e52d7bb7fb7e5ec34576273e38ce575c11d5ebf7
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,21 +44,16 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name=".Camera.ActivityCameraSave"
-            android:label="@string/title_activity_activity_camera_save"></activity>
-
-        <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-<<<<<<< HEAD
+
         <activity
             android:name=".Camera.ActivityPicture"
             android:label="@string/title_activity_activity_camera_save" >
         </activity>
-=======
->>>>>>> e52d7bb7fb7e5ec34576273e38ce575c11d5ebf7
+
     </application>
 
 </manifest>
