@@ -5,12 +5,22 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.android.newgeneration.dandisnap.R;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+
 public class ActivityPicture extends Activity {
 
+    @InjectView(R.id.picture_btn_backsign)
+    Button mPictureBtnBacksign;
+    @InjectView(R.id.picture_btn_share)
+    Button mPIctureBtnShare;
+    @InjectView(R.id.picture_img_picture)
     ImageView mPictureImgPicture;
 
     @Override
@@ -18,7 +28,7 @@ public class ActivityPicture extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture);
 
-        mPictureImgPicture = (ImageView) findViewById(R.id.picture_img_picture);
+        ButterKnife.inject(this);
 
         String path = getIntent().getExtras().getString("path");
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -28,8 +38,7 @@ public class ActivityPicture extends Activity {
         mPictureImgPicture.setImageBitmap(bm);
     }
 
-    Bitmap imgResized(Bitmap bmp)
-    {
+    Bitmap imgResized(Bitmap bmp) {
         int width = bmp.getWidth();
         int height = bmp.getHeight();
 
@@ -37,10 +46,22 @@ public class ActivityPicture extends Activity {
         matrix.postRotate(90);
 
         Bitmap rotatedBitmap = Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, true);
-        Bitmap resizedBitmap = Bitmap.createBitmap(rotatedBitmap, 0, rotatedBitmap.getHeight()*1/11, rotatedBitmap.getWidth(), rotatedBitmap.getWidth());
+        Bitmap resizedBitmap = Bitmap.createBitmap(rotatedBitmap, 0, rotatedBitmap.getHeight() * 1 / 11, rotatedBitmap.getWidth(), rotatedBitmap.getWidth());
         bmp.recycle();
 
         return resizedBitmap;
+    }
+
+    @OnClick({R.id.picture_btn_share, R.id.picture_btn_backsign})
+    void onButtonClick(Button btn) {
+        switch (btn.getId()) {
+            case R.id.picture_btn_share:
+                break;
+            case R.id.picture_btn_backsign:
+                onBackPressed();
+                break;
+
+        }
     }
 
 
