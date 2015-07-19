@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -79,11 +81,14 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     Button mLoginBtnFacebook;
     @InjectView(R.id.login_btn_facebook2)
     Button mLoginBtnFacebook2;
+    @InjectView(R.id.login_btn_enter)
+    Button mLoginBtnEnter;
     CallbackManager mCallbackManager;
     private static String mBufferemail = "";
     private static String mBuffername = "";
     private static String mBuffernick = "";
     private static String mBufferpsw = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,16 +100,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         setOnEditorActionListener();
         checkOnlogin();
         setInit();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
+        checkEditText();
     }
 
 
@@ -132,7 +128,8 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     }
 
     @OnClick({R.id.login_btn_signup, R.id.login_btn_login, R.id.login_btn_backname, R.id.login_btn_backnick,
-            R.id.login_btn_backpsw, R.id.login_btn_findpsw, R.id.login_btn_facebook, R.id.login_btn_facebook2})
+            R.id.login_btn_backpsw, R.id.login_btn_findpsw, R.id.login_btn_facebook, R.id.login_btn_facebook2,
+            R.id.login_btn_enter})
     void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn_signup:
@@ -160,6 +157,9 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
             case R.id.login_btn_facebook2:
                 loginFacebook();
                 break;
+            case R.id.login_btn_enter:
+                enterToMain();
+                break;
         }
     }
 
@@ -182,14 +182,18 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                 handlerUserdata(R.id.login_edit_name);
                 break;
             case R.id.login_edit_nick:
-                convertLayout(R.id.login_edit_nick);
-                handlerUserdata(R.id.login_edit_nick);
+                if (!mLoginEditNick.getText().toString().isEmpty()) {
+                    convertLayout(R.id.login_edit_nick);
+                    handlerUserdata(R.id.login_edit_nick);
+                }
                 break;
             case R.id.login_edit_makepsw:
-                handlerUserdata(R.id.login_edit_makepsw);
-                Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
-                startActivity(intent);
-                finish();
+                if(!mLoginEditMakepsw.getText().toString().isEmpty()) {
+                    handlerUserdata(R.id.login_edit_makepsw);
+                    Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+                    startActivity(intent);
+                    finish();
+                }
                 break;
         }
         return false;
@@ -247,20 +251,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     public void handlerUserdata(int viewId) {
         switch (viewId) {
             case R.id.login_edit_psw:
-                if (mLoginEditUsername.getText().toString().isEmpty()) {
-                    mLoginTxtError.setText(R.string.login_username);
-                } else if (mLoginEditPsw.getText().toString().isEmpty()) {
-                    mLoginTxtError.setText(R.string.login_psw);
-                } else if (mLoginEditPsw.getText().toString().equals(mUserData.getUser_password()) && mLoginEditUsername.getText().toString().equals(mUserData.getUser_nickname())) {
-                    mLoginTxtError.setText("");
-                    mUserData.setOnlogin(1, this);
-                    Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    mLoginTxtError.setText(R.string.login_wrongmsg);
-                }
-                //완료버튼 누르면 로그인이 되고, 메인화면으로 넘어가는 이벤트
+                enterToMain();
                 break;
             case R.id.login_edit_email:
                 mBufferemail = mLoginEditEmail.getText().toString();
@@ -275,6 +266,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                 //  mUserData.setUser_nickname(mLoginEditNick.getText().toString(), this);
                 break;
             case R.id.login_edit_makepsw:
+                mBufferpsw = mLoginEditMakepsw.getText().toString();
                 mUserData.setUser_email(mBufferemail, this);
                 mUserData.setUser_name(mBuffername, this);
                 mUserData.setUser_nickname(mBuffernick, this);
@@ -344,5 +336,44 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         String email = string;
         int count = email.indexOf("@");
         mBuffername = email.substring(0, count);
+    }
+
+    public void enterToMain() {
+        if (mLoginEditPsw.getText().toString().equals(mUserData.getUser_password()) && mLoginEditUsername.getText().toString().equals(mUserData.getUser_nickname())
+                && !mLoginEditPsw.getText().toString().equals("") && !mLoginEditUsername.getText().toString().equals("")) {
+            mLoginTxtError.setText("");
+            mUserData.setOnlogin(1, this);
+            Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else {
+            mLoginTxtError.setText(R.string.login_wrongmsg);
+            mLoginTxtError.setTextColor(getResources().getColor(R.color.light_red));
+        }
+    }
+
+    public void checkEditText() {
+        mLoginEditPsw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mLoginEditPsw.getText().length() != 0) {
+                    mLoginBtnFindpsw.setVisibility(View.GONE);
+                    mLoginBtnEnter.setVisibility(View.VISIBLE);
+                } else {
+                    mLoginBtnFindpsw.setVisibility(View.VISIBLE);
+                    mLoginBtnEnter.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }

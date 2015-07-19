@@ -42,6 +42,7 @@
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginTop="18dp"
                             android:text="DANDISNAP"
                             android:textColor="@color/white"
                             android:textSize="30sp" />
@@ -52,7 +53,8 @@
                             android:layout_below="@+id/main_txt_title"
                             android:layout_centerHorizontal="true"
                             android:text="친구들의 사진과 동영상을 보려면 가입하세요."
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -73,7 +75,7 @@
                                 <Button
                                     android:id="@+id/login_btn_signup"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_gravity="bottom"
                                     android:background="#00000000"
                                     android:text="회원 가입"
@@ -89,7 +91,7 @@
                                 <Button
                                     android:id="@+id/login_btn_login"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_gravity="bottom"
                                     android:background="#00000000"
                                     android:text="로그인"
@@ -156,12 +158,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_centerInParent="true"
+                                    android:background="#00000000"
                                     android:gravity="center"
                                     android:text="Facebook으로 로그인"
                                     android:textColor="@color/default_blue"
-                                    android:textStyle="bold"
-                                    android:background="#00000000"
-                                    android:textSize="13sp"/>
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -191,6 +193,7 @@
                         android:layout_weight="1">
 
                         <TextView
+                            android:id="@+id/login_txt_agree"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
@@ -269,7 +272,7 @@
                                         android:background="#00000000"
                                         android:hint="비밀번호"
                                         android:imeOptions="actionDone"
-                                        android:inputType="text"
+                                        android:inputType="textPassword"
                                         android:nextFocusDown="@id/login_edit_username"
                                         android:textColorHint="#33000000"
                                         android:textSize="15sp" />
@@ -283,7 +286,20 @@
                                         android:gravity="center|right"
                                         android:text="비밀번호를 잊으셨나요?"
                                         android:textColor="@color/default_blue"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        android:visibility="visible" />
+
+                                    <Button
+                                        android:id="@+id/login_btn_enter"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.2"
+                                        android:background="#00000000"
+                                        android:gravity="center"
+                                        android:text="확인"
+                                        android:textColor="@color/default_blue"
+                                        android:textSize="15sp"
+                                        android:visibility="gone" />
                                 </LinearLayout>
 
 
@@ -353,8 +369,8 @@
                             android:gravity="center"
                             android:text="Facebook으로 로그인"
                             android:textColor="@color/default_blue"
-                            android:textStyle="bold"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
 
                     </RelativeLayout>
@@ -787,7 +803,7 @@
                             android:gravity="center"
                             android:hint="비밀번호 만들기"
                             android:imeOptions="actionDone"
-                            android:inputType="text"
+                            android:inputType="textPassword"
                             android:textColorHint="#33000000"
                             android:textSize="15sp" />
 

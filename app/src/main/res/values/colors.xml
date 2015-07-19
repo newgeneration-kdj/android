@@ -7,4 +7,5 @@
     <item name="light_blue" type="color">#3399FF</item>
     <item name="transparent" type="color">#00000000</item>
     <item name="light_grey" type="color">#BDBDBD</item>
+    <item name="light_red" type="color">#88ff0000</item>
 </resources>

@@ -22,7 +22,7 @@
             android:name=".Login.ActivityLogin"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustPan" >
+            android:windowSoftInputMode="stateAlwaysVisible" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
