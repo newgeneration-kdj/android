@@ -129,7 +129,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.1dp"
                     android:background="@color/light_grey">
 
                 </RelativeLayout>
@@ -152,7 +152,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.1dp"
                     android:background="@color/light_grey">
 
                 </RelativeLayout>
@@ -200,8 +200,9 @@
                             android:textSize="15sp" />
 
                         <ImageView
-                            android:layout_width="1dp"
+                            android:layout_width="0.1dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="0"
                             android:background="@color/light_grey">
                         </ImageView>
 
@@ -221,7 +222,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.1dp"
                     android:background="@color/light_grey">
 
                 </RelativeLayout>
@@ -246,8 +247,9 @@
                             android:textSize="15sp" />
 
                         <ImageView
-                            android:layout_width="1dp"
+                            android:layout_width="0.1dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="0"
                             android:background="@color/light_grey">
                         </ImageView>
 
@@ -267,7 +269,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.1dp"
                     android:background="@color/light_grey">
 
                 </RelativeLayout>
@@ -292,8 +294,9 @@
                             android:textSize="15sp" />
 
                         <ImageView
-                            android:layout_width="1dp"
+                            android:layout_width="0.1dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="0"
                             android:background="@color/light_grey">
                         </ImageView>
 
@@ -312,7 +315,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.1dp"
                     android:background="@color/light_grey">
 
                 </RelativeLayout>
