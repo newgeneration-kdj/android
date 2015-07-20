@@ -8,4 +8,5 @@
     <item name="transparent" type="color">#00000000</item>
     <item name="light_grey" type="color">#BDBDBD</item>
     <item name="light_red" type="color">#88ff0000</item>
+    <item name="black" type="color">#000000</item>
 </resources>
