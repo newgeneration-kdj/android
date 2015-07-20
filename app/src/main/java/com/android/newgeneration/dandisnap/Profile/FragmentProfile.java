@@ -5,11 +5,13 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,6 +27,8 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
     TextView mProfileTxtTitle, mProfileTxtLogout, mProfileTxtName;
     RelativeLayout mProfileRlBacksign, mProfileRlOption, mProfileRlBar;
     UserData mUserdata = UserData.getInstance();
+    DisplayMetrics metrics;
+    GridView mProfileGrdImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +48,10 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         mProfileTxtTitle = (TextView) v.findViewById(R.id.profile_txt_title);
         mProfileTxtName = (TextView) v.findViewById(R.id.profile_txt_name);
         setText();
+        metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        mProfileGrdImage = (GridView)v.findViewById(R.id.profile_grd_image);
+        mProfileGrdImage.setAdapter(new ImageAdapter(getActivity(),metrics.widthPixels));
         return v;
     }
 

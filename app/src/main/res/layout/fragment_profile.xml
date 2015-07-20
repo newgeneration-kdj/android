@@ -303,8 +303,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="60">
-
+                    <GridView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/profile_grd_image"
+                        android:columnWidth="90dp"
+                        android:gravity="center"
+                        android:horizontalSpacing="10dp"
+                        android:numColumns="auto_fit"
+                        android:stretchMode="spacingWidth"
+                        android:verticalSpacing="10dp"></GridView>
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
