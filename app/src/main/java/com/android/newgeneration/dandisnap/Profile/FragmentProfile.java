@@ -29,6 +29,7 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
     UserData mUserdata = UserData.getInstance();
     DisplayMetrics metrics;
     GridView mProfileGrdImage;
+    ImageAdapter mImageAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +52,8 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mProfileGrdImage = (GridView)v.findViewById(R.id.profile_grd_image);
-        mProfileGrdImage.setAdapter(new ImageAdapter(getActivity(),metrics.widthPixels));
+        mImageAdapter = new ImageAdapter(getActivity(),metrics.widthPixels);
+        mProfileGrdImage.setAdapter(mImageAdapter);
         return v;
     }
 
@@ -116,8 +118,6 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         if (mUserdata.getUser_nickname() != null) {
             mProfileTxtName.setText(mUserdata.getUser_name());
         }
-
-
     }
 
 }

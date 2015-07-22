@@ -18,4 +18,5 @@
     <string name="facebook_app_id">667477216687513</string>
     <string name="title_activity_activity_camera_save">ActivityCameraSave</string>
     <string name="title_activity_activity_option">ActivityOption</string>
+    <string name="title_activity_image">ImageActivity</string>
 </resources>

@@ -1,11 +1,12 @@
 package com.android.newgeneration.dandisnap.Profile;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.android.newgeneration.dandisnap.R;
@@ -15,12 +16,14 @@ import com.android.newgeneration.dandisnap.R;
  */
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
-    private Integer[] mThumbIds = {R.drawable.view01,R.drawable.view02,R.drawable.view03};
+    public int[] mThumbIds = {R.drawable.view01, R.drawable.view02, R.drawable.view03, R.drawable.view04,
+            R.drawable.view05, R.drawable.view06, R.drawable.view07, R.drawable.view08,
+            R.drawable.view01, R.drawable.view02, R.drawable.view03, R.drawable.view04};
     int rowWidth;
 
-    public ImageAdapter(Context mContext , int rowWidth) {
+    public ImageAdapter(Context mContext, int rowWidth) {
         this.mContext = mContext;
-        this.rowWidth = rowWidth/3;
+        this.rowWidth = rowWidth / 3;
 
     }
 
@@ -40,20 +43,30 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null){
-            Log.d("DEBUG", "position : " + position);
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        ImageView imageView = null;
+        if (convertView == null) {
+            Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), mThumbIds[position]);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 320, 320, false);
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(rowWidth, rowWidth));
-            imageView.setAdjustViewBounds(false);
+            imageView.setAdjustViewBounds(true);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(0,0 ,0, 0);
-        }else{
+            imageView.setPadding(1, 1, 1, 1);
+            imageView.setImageBitmap(bitmap);
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext,ImageActivity.class);
+                    intent.putExtra("imageID",mThumbIds[position]);
+                    mContext.startActivity(intent);
+
+                }
+            });
+
+        } else {
             imageView = (ImageView) convertView;
         }
-
-            imageView.setImageResource(mThumbIds[position]);
 
         return imageView;
     }
