@@ -57,6 +57,7 @@ public class ActivityMain extends Activity {
         mArrayListFragment = new ArrayList<>();
         setFragment();
         mArrayListFragment.add(mFragmentHome);
+        connectFragmentToBtn();
     }
 
     @OnClick({R.id.main_btn_home, R.id.main_btn_search, R.id.main_btn_camera, R.id.main_btn_action, R.id.main_btn_profile})
@@ -79,6 +80,7 @@ public class ActivityMain extends Activity {
                 replaceFragment(mFragmentProfile);
                 break;
         }
+        connectFragmentToBtn();
     }
 
     @Override
@@ -93,6 +95,7 @@ public class ActivityMain extends Activity {
             Fragment previousFragment = mArrayListFragment.get(mArrayListFragment.size() - 1);
             ft.show(previousFragment);
             ft.commit();
+            connectFragmentToBtn();
         }
     }
 
@@ -120,6 +123,36 @@ public class ActivityMain extends Activity {
         if (index != -1)
             mArrayListFragment.remove(index);
         mArrayListFragment.add(nextfragment);
+    }
+
+    public void connectFragmentToBtn()
+    {
+        Fragment presentFragment = mArrayListFragment.get(mArrayListFragment.size() - 1);
+        if(presentFragment == mFragmentHome)
+        {
+            setBtnSelectd(mMainBtnHome);
+        }
+        else if(presentFragment == mFragmentSearch)
+        {
+            setBtnSelectd(mMainBtnSearch);
+        }
+        else if(presentFragment == mFragmentAction)
+        {
+            setBtnSelectd(mMainBtnAction);
+        }
+        else if(presentFragment == mFragmentProfile)
+        {
+            setBtnSelectd(mMainBtnProfile);
+        }
+    }
+
+    public void setBtnSelectd(Button btn)
+    {
+        mMainBtnHome.setSelected(false);
+        mMainBtnSearch.setSelected(false);
+        mMainBtnAction.setSelected(false);
+        mMainBtnProfile.setSelected(false);
+        btn.setSelected(true);
     }
 
 }

@@ -83,241 +83,253 @@
             android:layout_height="0dp"
             android:layout_weight="100">
 
-            <LinearLayout
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="110dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/picture_img_picture"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="30dp"/>
-
-                    <EditText
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="100dp"
-                        android:paddingRight="20dp"
-                        android:textSize="15sp"
-                        android:backgroundTint="@color/light_grey"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="10sp"
-                        android:text="사람 태그하기"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_grey">
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="10sp"
-                        android:text="포토맵에 추가"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_grey">
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="10sp"
-                        android:text="공유하기"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="20sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/light_grey">
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="10sp"
-                            android:text="Facebook"
-                            android:textColor="@color/dark_grey"
-                            android:textSize="15sp" />
+                        android:layout_height="wrap_content">
 
                         <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/light_grey">
-                        </ImageView>
+                            android:id="@+id/picture_img_picture"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="30dp"/>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="10sp"
-                            android:text="Twitter"
-                            android:textColor="@color/dark_grey"
-                            android:textSize="15sp" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="110dp"
+                            android:paddingLeft="100dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="30dp"
+                            android:paddingBottom="20dp"
+                            android:textSize="15sp"
+                            style="@style/EditTextCustomHolo"/>
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_grey">
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="45dp">
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:paddingLeft="10sp"
-                            android:text="Tumblr"
+                            android:text="사람 태그하기"
                             android:textColor="@color/dark_grey"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
 
-                        <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/light_grey">
-                        </ImageView>
+                    </RelativeLayout>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="10sp"
-                            android:text="Foursquare"
-                            android:textColor="@color/dark_grey"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_grey">
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="0.1dp"
+                        android:background="@color/light_grey">
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp">
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:paddingLeft="10sp"
-                            android:text="Flickr"
+                            android:text="포토맵에 추가"
                             android:textColor="@color/dark_grey"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
 
-                        <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/light_grey">
-                        </ImageView>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/light_grey">
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="20dp">
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:paddingLeft="10sp"
+                            android:text="공유하기"
                             android:textColor="@color/dark_grey"
-                            android:textSize="15sp" />
+                            android:textSize="20sp" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/light_grey">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_grey">
+                    </RelativeLayout>
 
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp">
 
-            </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="Facebook"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="0.1dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:background="@color/light_grey">
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="Twitter"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/light_grey">
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="Tumblr"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="0.1dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:background="@color/light_grey">
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="Foursquare"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/light_grey">
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="Flickr"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="0.1dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:background="@color/light_grey">
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/light_grey">
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
 
         </RelativeLayout>
 
