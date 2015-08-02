@@ -52,7 +52,7 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mProfileGrdImage = (GridView)v.findViewById(R.id.profile_grd_image);
-        mImageAdapter = new ImageAdapter(getActivity(),metrics.widthPixels);
+        mImageAdapter = new ImageAdapter(getActivity(),metrics.widthPixels,metrics.heightPixels);
         mProfileGrdImage.setAdapter(mImageAdapter);
         return v;
     }
