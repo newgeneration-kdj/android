@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class ActivityPicture extends Activity {
+public class ActivitySharing extends Activity {
 
     @InjectView(R.id.picture_btn_backsign)
     Button mPictureBtnBacksign;
@@ -22,20 +22,36 @@ public class ActivityPicture extends Activity {
     Button mPIctureBtnShare;
     @InjectView(R.id.picture_img_picture)
     ImageView mPictureImgPicture;
+    public static final int imgWidth = 400;
+    public static final int imgHeight = 400;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_picture);
+        setContentView(R.layout.activity_sharing);
 
         ButterKnife.inject(this);
+        StatusChecked();
+    }
 
-        String path = getIntent().getExtras().getString("path");
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Bitmap.Config.RGB_565;
-        Bitmap bm = BitmapFactory.decodeFile(path, options);
-        bm = imgResized(bm);
-        mPictureImgPicture.setImageBitmap(bm);
+    void StatusChecked()
+    {
+        int status = getIntent().getExtras().getInt("status");
+        if (status == ActivityCamera.StatusPicture) {
+            String path = getIntent().getExtras().getString("path");
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+            Bitmap bm = BitmapFactory.decodeFile(path, options);
+            bm = imgResized(bm);
+            mPictureImgPicture.setImageBitmap(bm);
+        } else if (status == ActivityCamera.StatusGallery) {
+            String path = getIntent().getExtras().getString("path");
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+            Bitmap bm = BitmapFactory.decodeFile(path, options);
+            bm = Bitmap.createScaledBitmap(bm, imgWidth, imgHeight, true);
+            mPictureImgPicture.setImageBitmap(bm);
+        }
     }
 
     Bitmap imgResized(Bitmap bmp) {

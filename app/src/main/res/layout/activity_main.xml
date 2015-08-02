@@ -38,7 +38,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_btn_fragment"
+                        android:background="@drawable/selector_main_btn_fragment"
                         android:text="1"/>
 
                 </RelativeLayout>
@@ -53,7 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_btn_fragment"
+                        android:background="@drawable/selector_main_btn_fragment"
                         android:text="2"/>
 
                 </RelativeLayout>
@@ -68,7 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_btn_camera"
+                        android:background="@drawable/selector_main_btn_camera"
                         android:text="3"/>
 
                 </RelativeLayout>
@@ -83,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_btn_fragment"
+                        android:background="@drawable/selector_main_btn_fragment"
                         android:text="4"/>
 
                 </RelativeLayout>
@@ -98,7 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_btn_fragment"
+                        android:background="@drawable/selector_main_btn_fragment"
                         android:text="5"/>
 
                 </RelativeLayout>
