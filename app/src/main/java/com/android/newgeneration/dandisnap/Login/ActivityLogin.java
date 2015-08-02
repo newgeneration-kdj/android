@@ -3,6 +3,7 @@ package com.android.newgeneration.dandisnap.Login;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,14 +28,29 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.gson.JsonElement;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class ActivityLogin extends Activity implements OnEditorActionListener {
@@ -88,7 +104,8 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     private static String mBuffername = "";
     private static String mBuffernick = "";
     private static String mBufferpsw = "";
-
+    LoginService mLoginService;
+    RestAdapter restAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +118,12 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         checkOnlogin();
         setInit();
         checkEditText();
+        restAdapter = new RestAdapter.Builder()
+                .setEndpoint("http://infinite-scrubland-6162.herokuapp.com")
+                .build();
+        mLoginService = restAdapter.create(LoginService.class);
+
+
     }
 
 
@@ -175,6 +198,8 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                 if (!mLoginEditEmail.getText().toString().isEmpty()) {
                     convertLayout(R.id.login_edit_email);
                     handlerUserdata(R.id.login_edit_email);
+                    new ActivityServer().execute();
+                    duplication();
                 }
                 break;
             case R.id.login_edit_name:
@@ -188,7 +213,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                 }
                 break;
             case R.id.login_edit_makepsw:
-                if(!mLoginEditMakepsw.getText().toString().isEmpty()) {
+                if (!mLoginEditMakepsw.getText().toString().isEmpty()) {
                     handlerUserdata(R.id.login_edit_makepsw);
                     Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                     startActivity(intent);
@@ -376,4 +401,89 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
             }
         });
     }
+
+
+
+    public class ActivityServer extends AsyncTask<Void, Void, JSONObject> {
+        private static final String urlPath = "http://infinite-scrubland-6162.herokuapp.com/duplicate/emails/";
+        String email = "2003young@naver.com";
+      //  String name = "cheon bo kyeong";
+      //  String username = "bklove91";
+      //  String password = "11";
+        int status;
+
+        @Override
+        protected JSONObject doInBackground(Void... voids) {
+            JSONObject json = null;
+            try {
+                HttpGet mHttpGet = new HttpGet(urlPath + mBufferemail);
+                HttpClient client = new DefaultHttpClient();
+                HttpResponse mHttpResponse = client.execute(mHttpGet);
+                status = mHttpResponse.getStatusLine().getStatusCode();
+
+                //웹 서버에서 값받기
+                HttpEntity entityResponse = mHttpResponse.getEntity();
+                String r = EntityUtils.toString(entityResponse, HTTP.UTF_8);
+                json = new JSONObject(r);
+               // InputStream inputStream = mHttpResponse.getEntity().getContent();
+               // BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                //json = new JSONObject(bufferedReader.readLine());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+        //asyonTask 3번째 인자와 일치 매개변수값 -> doInBackground 리턴값이 전달됨
+        //AsynoTask 는 preExcute - doInBackground - postExecute 순으로 자동으로 실행됩니다.
+        //ui는 여기서 변경
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            String exist = null;
+            Log.d("debug_status", "tttttttttttttttt = " + jsonObject);
+            if (status == 200) {
+                try {
+                    exist = jsonObject.getString("exist");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //Toast.makeText(ActivityServer.this, "데이터가 저장되었습니다", Toast.LENGTH_SHORT).show();
+                Log.d("debug_status", "200");
+                Log.d("debug_status", exist);
+            } else if (status == 500)
+                // Toast.makeText(ActivityLogin.this, "서버와의 연결에서 오류가 발생하였습니다", Toast.LENGTH_SHORT).show();
+                Log.d("debug_status", "500");
+
+
+        }
+    }
+
+
+    public void duplication(){
+        mLoginService.getEmail(mBufferemail, new Callback<JsonElement>() {
+            @Override
+            public void success(JsonElement jsonElement, Response response) {
+                Log.d("debug_status", "exist" + jsonElement.getAsJsonObject().get("exist").getAsInt());
+                if(jsonElement.getAsJsonObject().get("exist").getAsInt()==0){
+                    Toast.makeText(getApplicationContext(),"사용가능",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), "사용불가", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplicationContext(),"접속에러",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 }
+
+
+
+

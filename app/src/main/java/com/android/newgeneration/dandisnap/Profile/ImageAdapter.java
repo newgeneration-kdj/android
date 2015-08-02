@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.android.newgeneration.dandisnap.R;
 
 /**
- * Created by Ãµº¸°æ on 2015-07-20.
+ * Created by ì²œë³´ê²½ on 2015-07-20.
  */
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;

@@ -55,6 +55,12 @@
             android:label="@string/title_activity_image"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".Login.Ac"
+            android:label="@string/title_activity_image"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
