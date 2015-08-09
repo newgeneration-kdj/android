@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 
 import retrofit.Callback;
 import retrofit.http.GET;
+import retrofit.http.POST;
 import retrofit.http.Path;
 
 /**
@@ -15,4 +16,7 @@ public interface LoginService {
 
     @GET("/duplicate/usernames/{username}")
     void getUsername(@Path("username") String username, Callback<JsonElement> callback);
+    @
+    @POST("/login")
+
 }
