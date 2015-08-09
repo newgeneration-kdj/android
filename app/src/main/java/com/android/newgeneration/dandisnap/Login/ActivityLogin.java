@@ -93,7 +93,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     private static String mBuffername = "";
     private static String mBufferusername = "";
     private static String mBufferpsw = "";
-    LoginService mLoginService;
+    APIService mAPIService;
     RestAdapter restAdapter;
 
     @Override
@@ -108,9 +108,9 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
         setInit();
         checkEditText();
         restAdapter = new RestAdapter.Builder()
-                .setEndpoint("http://infinite-scrubland-6162.herokuapp.com")
+                .setEndpoint("http://server-newgeneration.azurewebsites.net")
                 .build();
-        mLoginService = restAdapter.create(LoginService.class);
+        mAPIService = restAdapter.create(APIService.class);
 
 
     }
@@ -186,9 +186,8 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
             case R.id.login_edit_email:
                 if (!mLoginEditEmail.getText().toString().isEmpty()) {
                     // convertLayout(R.id.login_edit_email);
-                    duplication(R.id.login_edit_email);
                     handlerUserdata(R.id.login_edit_email);
-
+                    duplication(R.id.login_edit_email);
                 }
                 break;
             case R.id.login_edit_name:
@@ -198,14 +197,14 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
             case R.id.login_edit_nick:
                 if (!mLoginEditNick.getText().toString().isEmpty()) {
                    // convertLayout(R.id.login_edit_nick);
-                    duplication(R.id.login_edit_nick);
                     handlerUserdata(R.id.login_edit_nick);
-
+                    duplication(R.id.login_edit_nick);
                 }
                 break;
             case R.id.login_edit_makepsw:
                 if (!mLoginEditMakepsw.getText().toString().isEmpty()) {
                     handlerUserdata(R.id.login_edit_makepsw);
+                    postLogindata();
                     Intent intent = new Intent(getApplicationContext(), ActivityMain.class);
                     startActivity(intent);
                     finish();
@@ -398,7 +397,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
     public void duplication(int viewid) {
         switch (viewid) {
             case R.id.login_edit_email:
-                mLoginService.getEmail(mBufferemail, new Callback<JsonElement>() {
+                mAPIService.getEmail(mBufferemail, new Callback<JsonElement>() {
                     @Override
                     public void success(JsonElement jsonElement, Response response) {
                         Log.d("debug_status", "exist" + jsonElement.getAsJsonObject().get("exist").getAsInt());
@@ -413,6 +412,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                     @Override
                     public void failure(RetrofitError error) {
                          Toast.makeText(getApplicationContext(),"이메일 접속에러",Toast.LENGTH_SHORT).show();
+                        Log.d("error",error.getMessage());
 
                     }
                 });
@@ -420,7 +420,7 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
             case R.id.login_edit_nick:
 
                 Log.d("test"," username = " + mBufferusername);
-                mLoginService.getUsername(mBufferusername, new Callback<JsonElement>() {
+                mAPIService.getUsername(mBufferusername, new Callback<JsonElement>() {
                     @Override
                     public void success(JsonElement jsonElement, Response response) {
                         Log.d("test",jsonElement.getAsJsonObject().toString());
@@ -429,12 +429,14 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
                             convertLayout(R.id.login_edit_nick);
                         } else {
                             Toast.makeText(getApplicationContext(), "사용불가", Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
                          Toast.makeText(getApplicationContext(),"username 접속에러",Toast.LENGTH_SHORT).show();
+                        Log.d("error", error.getMessage());
                     }
                 });
                 break;
@@ -443,6 +445,19 @@ public class ActivityLogin extends Activity implements OnEditorActionListener {
 
     }
 
+    public void postLogindata(){
+        mAPIService.login(mBufferemail, mBufferusername, mBuffername, mBufferpsw, new Callback<JsonElement>() {
+            @Override
+            public void success(JsonElement jsonElement, Response response) {
+                Log.d("test_post", jsonElement.getAsJsonObject().toString());
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("error",error.getMessage());
+            }
+        });
+    }
 
 }
 
