@@ -12,4 +12,7 @@ import retrofit.http.Path;
 public interface LoginService {
     @GET("/duplicate/emails/{email}")
     void getEmail(@Path("email") String email, Callback<JsonElement> callback);
+
+    @GET("/duplicate/usernames/{username}")
+    void getUsername(@Path("username") String username, Callback<JsonElement> callback);
 }

@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +32,15 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
     DisplayMetrics metrics;
     GridView mProfileGrdImage;
     ImageAdapter mImageAdapter;
+    Cursor imageCursor;
+    int imageColumIndex;
+    int count;
+    View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        v = inflater.inflate(R.layout.fragment_profile, container, false);
         mProfileTxtLogout = (TextView) v.findViewById(R.id.profile_txt_logout);
         mProfileTxtLogout.setOnClickListener(this);
         mProfileBtnBacksign = (Button) v.findViewById(R.id.profile_btn_backsign);
@@ -49,12 +55,25 @@ public class FragmentProfile extends Fragment implements View.OnClickListener {
         mProfileTxtTitle = (TextView) v.findViewById(R.id.profile_txt_title);
         mProfileTxtName = (TextView) v.findViewById(R.id.profile_txt_name);
         setText();
+        init();
+        return v;
+    }
+
+    public void init(){
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mProfileGrdImage = (GridView)v.findViewById(R.id.profile_grd_image);
-        mImageAdapter = new ImageAdapter(getActivity(),metrics.widthPixels,metrics.heightPixels);
+        // 갤러리에서 사진 가져오기
+        String[] img = {MediaStore.Images.Thumbnails._ID};
+        imageCursor = getActivity().managedQuery(
+                MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI,
+                img, null, null, MediaStore.Images.Thumbnails.IMAGE_ID + ""
+        );
+        imageColumIndex = imageCursor.getColumnIndexOrThrow(MediaStore.Images.Thumbnails._ID);
+        count = imageCursor.getCount();
+        mImageAdapter = new ImageAdapter(getActivity(),metrics.widthPixels,metrics.heightPixels,
+                imageColumIndex, count, imageCursor);
         mProfileGrdImage.setAdapter(mImageAdapter);
-        return v;
     }
 
     @Override
