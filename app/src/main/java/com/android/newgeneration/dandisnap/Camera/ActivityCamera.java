@@ -38,6 +38,8 @@ public class ActivityCamera extends Activity {
     Button mCameraBtnPictureClose;
     @InjectView(R.id.camera_btn_gallery_close)
     Button mCameraBtnGalleryClose;
+    @InjectView(R.id.camera_btn_switch)
+    Button mCameraBtnSwitch;
     @InjectView(R.id.camera_btn_gallery)
     Button mCameraBtnGallery;
     @InjectView(R.id.camera_btn_picture)
@@ -52,11 +54,14 @@ public class ActivityCamera extends Activity {
     GridView mCameraGrvGallery;
     ImageAdapter mImageAdapter;
     SharedPreferences mSharedPreferences;
+    int mCameraFacing;
+    int status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
 
         mImageAdapter = new ImageAdapter(this);
         ButterKnife.inject(this);
@@ -72,14 +77,15 @@ public class ActivityCamera extends Activity {
     protected void onResume() {
         super.onResume();
 
-        int status = mSharedPreferences.getInt("status", StatusPicture);
+        status = mSharedPreferences.getInt("status", StatusPicture);
+        mCameraFacing = mSharedPreferences.getInt("front_back", Camera.CameraInfo.CAMERA_FACING_BACK);
         if (status == StatusPicture)
             mCameraBtnPicture.performClick();
         else if (status == StatusGallery)
             mCameraBtnGallery.performClick();
     }
 
-    @OnClick({R.id.camera_btn_shutter, R.id.camera_btn_picture_close, R.id.camera_btn_gallery, R.id.camera_btn_picture, R.id.camera_btn_gallery_close})
+    @OnClick({R.id.camera_btn_shutter, R.id.camera_btn_picture_close, R.id.camera_btn_gallery, R.id.camera_btn_picture, R.id.camera_btn_gallery_close, R.id.camera_btn_switch})
     void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.camera_btn_gallery:
@@ -107,6 +113,12 @@ public class ActivityCamera extends Activity {
             case R.id.camera_btn_gallery_close:
                 finish();
                 break;
+            case R.id.camera_btn_switch:
+                mCameraFacing = (mCameraFacing == Camera.CameraInfo.CAMERA_FACING_BACK) ?
+                        Camera.CameraInfo.CAMERA_FACING_FRONT : Camera.CameraInfo.CAMERA_FACING_BACK;
+                SaveFrontBack(mCameraFacing);
+                mMyCameraSurface.switchCamera();
+                break;
         }
 
     }
@@ -115,6 +127,12 @@ public class ActivityCamera extends Activity {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.remove("status");
         editor.putInt("status", status);
+        editor.commit();
+    }
+    void SaveFrontBack(int CameraFacing) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.remove("front_back");
+        editor.putInt("front_back", CameraFacing);
         editor.commit();
     }
 
@@ -174,6 +192,7 @@ public class ActivityCamera extends Activity {
             Intent intentPicture = new Intent(getApplicationContext(), ActivitySharing.class);
             intentPicture.putExtra("path", path);
             intentPicture.putExtra("status", StatusPicture);
+            intentPicture.putExtra("front_back",mCameraFacing);
             startActivity(intentPicture);
 
         }

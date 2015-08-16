@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ public class ActivitySharing extends Activity {
     ImageView mPictureImgPicture;
     public static final int imgWidth = 400;
     public static final int imgHeight = 400;
+    int status, mCameraFacing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,9 @@ public class ActivitySharing extends Activity {
         StatusChecked();
     }
 
-    void StatusChecked()
-    {
-        int status = getIntent().getExtras().getInt("status");
+    void StatusChecked() {
+        status = getIntent().getExtras().getInt("status");
+        mCameraFacing = getIntent().getExtras().getInt("front_back");
         if (status == ActivityCamera.StatusPicture) {
             String path = getIntent().getExtras().getString("path");
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -59,7 +61,12 @@ public class ActivitySharing extends Activity {
         int height = bmp.getHeight();
 
         Matrix matrix = new Matrix();
-        matrix.postRotate(90);
+        if (mCameraFacing == Camera.CameraInfo.CAMERA_FACING_BACK)
+            matrix.postRotate(90);
+        else {
+            matrix.postRotate(270);
+            matrix.postScale(-1, 1);
+        }
 
         Bitmap rotatedBitmap = Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, true);
         Bitmap resizedBitmap = Bitmap.createBitmap(rotatedBitmap, 0, rotatedBitmap.getHeight() * 1 / 11, rotatedBitmap.getWidth(), rotatedBitmap.getWidth());
